@@ -1,0 +1,179 @@
+:root{
+    
+    --mainBack: #151221;
+    --CTA: #F09475;
+    --linkhover:#D4698F;
+    --otheraccent:#8CA0D6;
+    --mainTX:#F2E9F5;
+    --secheadTX: #C4B5D9;
+    --priheadTX:#E07B9A;
+    --headfoot: #2A2438;
+    --border:#423A52;
+    --navUl: RGBA(66,58,82,.8);
+    --hfrgb: RGBA(42,36,56,.8)
+
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 1.2em;
+    background-color: var(--mainBack);
+    background-image: 
+    url("/CIT190/media/background2.png");
+    background-position: 
+    center top;
+    background-repeat: 
+    no-repeat;
+    background-attachment: fixed;
+    background-size: 100vw 100vh; 
+    
+    
+
+    
+}
+
+footer,
+header {
+    color: var(--mainTX);
+    background-color: var(--hfrgb);
+        /* opacity is optional - if you have a background photo, it will allow the photo to show through the color */
+        
+         width: 100%;
+}
+footer>p{
+    padding: 0 1em;
+}
+
+article {
+    /* use the settings shown below */
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+section {
+    flex: 1;
+    
+    color:var(--mainTX);
+        /*  use % for padding, height and width */
+        padding: 1% 2%; 
+        min-width: 30%;
+        max-width: 60%;
+        min-height: fit-content;
+        
+        /* opacity is optional - if you have a background photo, it will allow the photo to show through the color */
+        
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+        /*  use em for size or another relative measurement */
+        font-size:1.8em; 
+        color: var(--priheadTX);
+        text-shadow: 0 0  5px var(--linkhover);
+        text-align: center;
+}
+
+h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: var(--priheadTX);
+        /*  use em for size or another relative measurement */
+        font-size: 1.6em;
+        text-shadow: 0 0 8px var(--priheadTX);
+        width: fit-content;
+        padding: .5em .5em;
+        
+        background-color:var(--headfoot);
+        border-radius: 25px 0;
+}
+
+nav {
+    margin: 0px;
+    width: 100%;
+    height: auto;
+}
+
+nav ul {
+    background:var(--navUl);
+        /* box-shadow settings can be whatever you want */
+        
+    padding: 10px;
+    border-radius: 50px 0;
+    list-style: none;
+    position: relative;
+    color: var(--mainTX);
+        /* font-weight can be whatever you want */
+        font-weight:900;
+        
+}
+nav>ul{
+    box-shadow: 0 0 20px var(--otheraccent);
+}
+
+nav ul li {
+    display: inline-table;
+    margin: 10px;
+    padding: 5px;
+    color: var(--CTA);
+}
+
+nav ul li:hover {
+    color: var(--otheraccent);
+        /*  font-size should be a relative measurement */
+        font-size: 1.05em;
+}
+
+nav ul li a {
+    display: block;
+    /* the padding can be in pixels */
+    padding: 3px 3px;
+        color: var(--CTA); 
+        
+        text-decoration: none;
+}
+
+nav ul li:hover>a {
+    text-shadow:0 0 10px var(--CTA);
+        text-decoration: none;
+}
+
+nav ul li:hover>ul {
+    display: flex;
+    flex-direction: column;
+}
+
+nav ul ul {
+    display: none;
+    border: 1px solid var(--linkhover);
+        /* the border color can be whatever you want */
+    box-shadow: 0 0 10px var(--linkhover);
+    border-radius:12.5px 0;
+    padding: 2px 0;
+    position: absolute;
+    /*  font-size should be a relative measurement */
+    font-size: 1em;
+        z-index:10;
+}
+
+nav ul ul li {
+    display: block;
+    /*  you can adjust the border top and bottom colors to whatever you want */
+    border-top: 5px double var(--otheraccent);
+    border-bottom: 5px double var(--otheraccent);
+    position: relative;
+    
+}
+
+nav ul ul li a {
+    padding: 15px;
+    color: var(--CTA);
+    
+}
+
+nav ul ul li a:hover {
+    
+        color: var(--linkhover);
+        text-shadow: 0 0 10px var(--linkhover);
+}
