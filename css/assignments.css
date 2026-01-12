@@ -35,17 +35,16 @@ body {
 
 footer,
 header {
+    width: 100dvw;
     box-shadow: 0 0 15px var(--otheraccent);
     color: var(--mainTX);
     background-color: var(--hfrgb);
-        /* opacity is optional - if you have a background photo, it will allow the photo to show through the color */
         
-         width: 100%;
 }
 footer{
     
    justify-content: end;
-    display: inline-flex;
+    display: flex;
     
 }
 footer>p{
@@ -53,10 +52,8 @@ footer>p{
     padding: 0 1em;
 }
 .icon{
-    min-width: 2dvw;
-        max-width: 4dvw;
-   
-    width: 100%;
+    min-width: 5dvw;
+    
     height: auto;
     
 }
@@ -73,6 +70,7 @@ footer>a{
 
 
 article {
+    
     /* use the settings shown below */
     display: flex;
     flex-direction: column;
@@ -88,7 +86,7 @@ section {
         /*  use % for padding, height and width */
         padding: 1% 2%; 
         min-width: 30%;
-        max-width: 60%;
+        max-width: 70%;
         min-height: fit-content;
         
         /* opacity is optional - if you have a background photo, it will allow the photo to show through the color */
@@ -118,7 +116,7 @@ h2 {
 }
 
 nav {
-    margin: 0px;
+    margin: 0;
     width: 100%;
     height: auto;
 }
@@ -206,6 +204,9 @@ nav ul ul li a:hover {
         text-shadow: 0 0 10px var(--linkhover);
 }
 
-@media only screen and (max-width){
+@media only screen and (max-height: 500px){
     
+    footer{
+        display: none;
+    }
 }
