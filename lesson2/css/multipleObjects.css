@@ -1,0 +1,28 @@
+:root{
+--primetext: #2C3E50;
+--primeaccent: #D98D68;
+--bgsecond: #E0A6AA;
+--secondaccent: #E2C275;
+--primebg: #E6DBC9;
+}
+
+header{
+    margin: 0;
+    padding: 1em 0;
+    min-height: 20dvh;
+    width: 100dvw;
+    background-color: var(--bgsecond);
+    justify-items: center;
+    box-shadow: 0 0 20px var(--primetext);
+
+}
+.headitem{
+    margin:0 1em 1em 1em;
+}
+body{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 0;
+    margin: 0;
+    background-color: var(--primebg);
+    color: var(--primetext);
+}
