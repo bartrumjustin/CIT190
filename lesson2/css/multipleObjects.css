@@ -1,8 +1,8 @@
 :root{
---primetext: #2C3E50;
+--primetext: #2c3e50;
 --primeaccent: #D98D68;
 --bgsecond: #E0A6AA;
---secondaccent: #E2C275;
+--secondaccent: #e2c275;
 --primebg: #E6DBC9;
 }
 
@@ -17,11 +17,11 @@ body{
 header {
     margin: 0;
     padding: 1em 0;
-    min-height: 10dvh;
+    height: 10dvh;
     width: 100dvw;
     background-color: var(--bgsecond);
     justify-items: center;
-    box-shadow: 0 0 20px var(--primetext);
+    box-shadow: 0 0 10px var(--primetext);
 
 }
 
@@ -30,6 +30,7 @@ header {
 }
 
 .maincont {
+    height: 100dvh;
     display: grid;
     gap: 1em;
     grid-template-areas:
@@ -45,29 +46,33 @@ header {
 
 .article1 {
     grid-area: art1;
+    min-height: 40dvh;
 }
 
 .article2 {
     grid-area: art2;
+    min-height: 35dvh;
 }
 
 .foot {
     grid-area: foot;
 }
-.boxcont{
-    border: 5px solid var(--primeaccent);
 
-}
 .moodcont{
-    background-color: var(--bgsecond);
+    padding: 1em 1em;
+    background-color: var(--primebg);
     display: grid;
     grid-template-areas: 'm1 m2 m3';
     gap: 1em;
 }
 .moodcont img{
-    max-width: 30%;
-    min-width: 25%;
-    max-height: auto;
+    
+    width: 25%;
+    height: auto;
+}
+.moodcont button{
+    padding: 1em 0;
+    border-radius: 3em;
 }
 .mood1{
     grid-area: m1;
@@ -77,4 +82,29 @@ header {
 }
 .mood3 {
     grid-area: m3;
+}
+.foot{
+    
+    width: 100dvw;
+    height: 5dvh;
+    background-color: var(--secondaccent);
+}
+.footcont{
+    display: flex;
+    justify-content: end;
+    
+}
+.foot a{
+    padding: 0 1em;
+    text-decoration: none;
+    color: none;
+}
+.foot p {
+    padding: 0 1em;
+    align-self: center;
+}
+.foot img{
+    width: auto;
+    height: 100%;
+
 }
