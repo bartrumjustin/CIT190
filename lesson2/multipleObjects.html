@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What is the weather like?</title>
-    <link rel="stylesheet" href="./lesson2/css/multipleObjects.css">
+    <link rel="stylesheet" href="./css/multipleObjects.css">
 </head>
 
 <body class="maincont">
@@ -14,11 +14,17 @@
     </header>
     <article id="survey" class="boxcont article1">
         <section id="mood" class="moodcont">
-            <button type="button" onclick="moodCheck(1)" id="positive" class="box1">
-                <img src="./lesson2/media/smile.png" alt="smiling emoji">
-               <h3>I Feel Positive</h3></button>
-            <button type="button" onclick="moodCheck(2)" id="neutral" class="box2"></button>
-            <button type="button" onclick="moodCheck(3)" id="negative" class="box3"></button>
+            <button type="button" onclick="moodCheck(1)" id="positive" class="mood1">
+                <img class="moodimg1" src="./media/smile.png" alt="smiling emoji">
+               <h3 class="moodtxt1">I Feel Positive</h3></button>
+            <button type="button" onclick="moodCheck(2)" id="neutral" class="mood2">
+                <img class="moodimg2" src="./media/nothing.png" alt="no mouth emoji">
+                <h3 class="moodtxt2">I Feel Indifferent</h3>
+            </button>
+            <button type="button" onclick="moodCheck(3)" id="negative" class="mood3">
+                <img class="moodimg3" src="./media/frown.png" alt="frown emoji">
+                <h3 class="moodtxt3">I Feel Negative</h3>
+            </button>
         </section>
         <section></section>
     </article>

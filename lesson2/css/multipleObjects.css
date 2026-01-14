@@ -58,3 +58,23 @@ header {
     border: 5px solid var(--primeaccent);
 
 }
+.moodcont{
+    background-color: var(--bgsecond);
+    display: grid;
+    grid-template-areas: 'm1 m2 m3';
+    gap: 1em;
+}
+.moodcont img{
+    max-width: 30%;
+    min-width: 25%;
+    max-height: auto;
+}
+.mood1{
+    grid-area: m1;
+}
+.mood2 {
+    grid-area: m2;
+}
+.mood3 {
+    grid-area: m3;
+}
