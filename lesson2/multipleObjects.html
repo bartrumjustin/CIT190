@@ -11,7 +11,7 @@
 <body class="maincont">
     <header class="head">
         <h1 class="headitem">Daily Check-In</h1>
-        <h2 class="headitem">A simple way to excersize awareness and reflect on your day</h2>
+        <h2 class="headitem">A simple way to journal your mood and reflect on your day</h2>
     </header>
     <article id="survey" class="boxcont article1">
         <section id="mood" class="moodcont">
@@ -26,8 +26,17 @@
                 <img class="moodimg3" src="./media/frown.png" alt="frown emoji">
                 <h3 class="moodtxt3">I Feel Negative</h3>
             </button>
+            <section id="moodDetail" class="detail">
+                <h3 id="detailInstruct">Please answer the following based on your selection.</h3>
+                <form class="detailForm">
+                    <textarea id="userText" class="detailUserText"></textarea>
+                    <button class="textbtn" type="button" onclick="getText(userText)">Submit</button>
+                </form>
+            </section>
         </section>
-        <section></section>
+        <section>
+
+        </section>
     </article>
     <article id="loggedAnswers" class="boxcont article2">
 

@@ -55,19 +55,27 @@ header {
 
 .article1 {
     grid-area: art1;
-    height: 25dvh;
+    height: 45dvh;
 }
 
 .article2 {
     grid-area: art2;
-    height: 25dvh;
+    height: 5dvh;
 }
 
 .foot {
     grid-area: foot;
 }
+.boxcont{
+    position: relative;
+    justify-items: center;
+}
 
 .moodcont{
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 90dvw;
     padding: 1em 1em;
     background-color: var(--primebg);
     display: grid;
@@ -78,13 +86,22 @@ header {
     
     width: 25%;
     height: auto;
+    
 }
 .moodcont button{
     padding: 1em 0;
     border-radius: 3em;
+    
+}
+.moodcont button:hover{
+    background-color: var(--primeaccent);
+}
+.moodcont button:active{
+    background-color: var(--secondaccent);
 }
 .mood1{
     grid-area: m1;
+    
 }
 .mood2 {
     grid-area: m2;
@@ -92,6 +109,42 @@ header {
 .mood3 {
     grid-area: m3;
 }
+.detail{
+    
+    position: absolute;
+    height: 100%;
+    width: 95dvw;
+    justify-items: center;
+    z-index: ;
+    background-color: var(--primebg);
+}
+.detailForm{
+    justify-content: end;
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    min-width:40dvw;
+    min-height: 50dvh;
+    
+}
+.detailUserText{
+    font-size: 150%;
+    border: 3px solid var(--primeaccent);
+    background-color: var(--primebg);
+    color: var(--primetext);
+    padding: 1em 1em;
+    flex-grow: 1;
+    border-radius: 20px;
+}
+.textbtn{
+    background-color: var(--secondaccent);
+    box-shadow: 1px 1px 3px var(--primetext);
+    align-self: center;
+    width: 10em;
+    height: 5em;
+    margin-top: 1em;
+}
+
 .foot{
     margin-top: auto;
     width: 100dvw;
