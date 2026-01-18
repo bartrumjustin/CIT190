@@ -75,7 +75,7 @@ header {
     background-color: var(--primebg);
     justify-content: center;
     position: absolute;
-    height: 60dvh;
+    height: 50dvh;
     width: 90dvw;
     padding: 1em 1em;
     background-color: var(--primebg);
@@ -84,7 +84,6 @@ header {
     gap: 1em;
 }
 .moodcont img{
-    z-index: 1;
     width: 25%;
     height: auto;
     
@@ -110,13 +109,15 @@ header {
 .mood3 {
     grid-area: m3;
 }
+#moodDetail{
+    display:none;
+}
 .detail{
     
     position: absolute;
-    height: 100%;
+    height: 70%;
     width: 95dvw;
     justify-items: center;
-    z-index: -1;
     background-color: var(--primebg);
 }
 .detailForm{
@@ -125,7 +126,7 @@ header {
     display: flex;
     flex-direction: column;
     min-width:40dvw;
-    min-height: 50dvh;
+    min-height: 40dvh;
     
 }
 .detailUserText{
@@ -191,6 +192,7 @@ header {
     }
     .footcont{
         height: auto;
+        padding-top: 1em;
         
     }
     .mobile{
