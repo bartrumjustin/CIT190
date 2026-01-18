@@ -10,10 +10,14 @@ var myDetails = "";
 function moodCheck() {
     switch (myMood) {
         case "positive":
-            log[1] = date;
-            log[2] = myMood;
+            log[0] = date;
+            log[1] = myMood;
+            console.log(log);
             document.getElementById("moodDetail").style.zIndex = "2";
             break;
+        case "neutral":
+            log[0] = date;
+            log[1] = myMood;
     }
 
 }
