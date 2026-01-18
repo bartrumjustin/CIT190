@@ -172,3 +172,25 @@ header {
     height: auto;
 
 }
+
+@media screen and (max-width: 800px) {
+    .maincont{
+        height: 100dvh;
+        display: grid;
+        grid-template-rows: 25% 30% 25%;
+    }
+    .head{
+        font-size: 90%;
+    }
+    .moodcont img{
+        z-index: 0;
+    }
+    .footcont{
+        height: auto;
+        
+    }
+    .mobile{
+        
+        font-size: 90%;
+    }
+}
