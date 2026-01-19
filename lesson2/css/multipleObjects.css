@@ -145,8 +145,34 @@ header {
     width: 10em;
     height: 5em;
     margin-top: 1em;
+    border-radius: 20px;
 }
+.respondcont{
+    display: none;
+    position: absolute;
+        height: 70%;
+        width: 95dvw;
+        justify-content: center;
+        background-color: var(--primebg);
+}
+.resp{
+    font-size: 2.5em;
+}
+.buttoncont{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
 
+}
+.buttoncont>button{
+    background-color: var(--secondaccent);
+    box-shadow: 1px 1px 3px var(--primetext);
+    width: 10em;
+    height: 5em;
+    margin: 1em .5em;
+    border-radius: 20px;
+}
 .foot{
     margin-top: auto;
     width: 100dvw;

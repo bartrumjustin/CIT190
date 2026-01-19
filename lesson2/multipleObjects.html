@@ -34,13 +34,17 @@
             <section id="moodDetail" class="detail">
                 <h3 id="detailInstruct">Please answer the following based on your selection.</h3>
                 <form class="detailForm">
-                    <textarea id="userText" class="detailUserText"></textarea>
+                    <textarea id="userText" class="detailUserText" maxlength="200" placeholder="200 letter max"></textarea>
                     <button class="textbtn" type="button" onclick="getText()">Submit</button>
                 </form>
             </section>
         
-        <section>
-
+        <section id="responding" class="respondcont">
+            <h3 id="response" class="resp mobile"></h3>
+            <div class="buttoncont">
+            <button  id="survey" type="button" onclick="backToSurvey()">Check-in</button>
+            <button  id="logs" type="button" onclick="revealLog()">See Logs</button>
+        </div>
         </section>
     </article>
     <article id="loggedAnswers" class="boxcont article2">
