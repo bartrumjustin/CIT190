@@ -34,10 +34,11 @@ header {
 }
 
 .headitem {
-    margin: 1em;
+    margin: .25em;
 }
 
 .maincont {
+    position: relative;
     height: 100dvh;
     display: grid;
     gap: 1em;
@@ -173,10 +174,40 @@ header {
     margin: 1em .5em;
     border-radius: 20px;
 }
+.logCont{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.logCont section{
+    margin: .25em .25em;
+    padding: .25em .75em;
+    border-radius: 20px;
+    background-color: var(--bgsecond);
+    box-shadow: 1px 2px 4px darkslategray;
+}
+.logCont h3, .logCont h4{
+    text-align: right;
+}
+.logCont h3 {
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: underline;
+}
+.logCont h4{
+    font-weight: 900;
+}
+.logCont details{
+    text-align: center;
+    width: 20dvw;
+    height: auto;
+    overflow-wrap: break-word;
+}
 .foot{
     margin-top: auto;
     width: 100dvw;
-    height: 5dvh;
+    
     background-color: var(--secondaccent);
 }
 .footcont{
@@ -201,6 +232,9 @@ header {
 }
 
 @media screen and (max-width: 800px) {
+    body{
+        height: auto;
+    }
     .headitem{
         margin: 0;
         padding: .5em .5em;
@@ -216,7 +250,12 @@ header {
     .moodcont img{
         z-index: 0;
     }
+    
+    .logCont details {
+        width: 75%;
+    }
     .footcont{
+        
         height: auto;
         padding-top: 1em;
         

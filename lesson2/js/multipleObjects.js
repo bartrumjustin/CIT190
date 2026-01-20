@@ -104,7 +104,7 @@ function backToSurvey() {
     surveyMood.style.display = "flex";
 }
 
-function revealLog(myDetails) {
+function revealLog() {
     respondcont.style.display = "none";
     surveyDetail.style.display = "none";
     surveyMood.style.display = "none";
@@ -112,8 +112,13 @@ function revealLog(myDetails) {
     const newLog = document.createElement("section");
     const newDate = document.createElement("h3");
     const newMood = document.createElement("h4");
-    const newDetail = document.createElement("p");
+    const newDetail = document.createElement("details");
+    const newDetSummary = document.createElement("summary");
+    const article = document.querySelector(".article2");
+    const special = document.querySelector(".special");
     var logAmount = log.length / 3;
+    article.style.gridArea = "art1";
+    article.style.height = "100%";
     console.log(logAmount);
     for (let i = 0; i < logAmount; i++){
         let x = i * 3;
@@ -121,9 +126,15 @@ function revealLog(myDetails) {
         logCont.append(newLog.cloneNode(true));
         newDate.textContent = log[x];
         document.getElementById(`log${i}`).append(newDate.cloneNode(true));
-        newMood.textContent = log[x+1];
+        newMood.textContent = `Mood: ${log[x+1]}`;
         document.getElementById(`log${i}`).append(newMood.cloneNode(true));
-        newDetail.textContent = log[x+2];
+        newDetail.textContent = log[x + 2];
+        newDetail.id = `detail${i}`;
         document.getElementById(`log${i}`).append(newDetail.cloneNode(true));
+        newDetSummary.textContent = "Open for Details";
+        document.getElementById(`detail${i}`).append(newDetSummary.cloneNode(true));
+        if (logAmount > 1) {
+            special.style.display = "none";
+        }
     }
 }
