@@ -65,11 +65,67 @@ p{
 }
 </style>
 <script>
-     function calcRate() {  
+     function calcRate() {
+	 const docRestingHR = document.getElementById("restingHR");
+	 const docAge = document.getElementById("age");
+	 var userAge = parseInt(docAge.value);
+	 var userRestingHR = parseInt(docRestingHR.value);
+	 var message;
+	 console.log("working calcRate()");
+	 if(userAge>99 || isNaN(userAge)){
+		message = "Please enter your age (15-99)";
+		docAge.value = "";
+		docAge.focus();
+		userAge = "";
+	 }
+	 else if(isNaN(userRestingHR) || userRestingHR != 0 && userRestingHR < 20 || userRestingHR > 100){
+		message = "Please enter your resting heart rate (20 - 100) or 50 if you dont know";
+		docRestingHR.value = "";
+		docRestingHR.focus();
+		restingHR = "";
+	 }
+	 else{
+		var lowEndVal = (220 - userAge - userRestingHR) * .5;
+		var lowEndAdj = lowEndVal + userRestingHR;
+		var hiEndVal = (220 - userAge - userRestingHR) * .85;
+		var hiEndAdj = hiEndVal + userRestingHR;
+		message = "Your training heart rate is between: <br>" + lowEndAdj + " and " + hiEndAdj; 
+	 }
+	 document.getElementById("feedback").innerHTML = message;
+	 if(hiEndAdj){
+		thankyou();
+		console.log("init thankyou()");
+	 }  
      } 
      function thankyou(){
+		console.log("working thankyou()");
+		var rand = Math.floor((Math.random() * 7) + 1);
+		var thankYou;
+		switch(rand){
+			case 1:
+				thankYou = "Have a nice day";
+				break;
+			case 2:
+				thankYou = "...and keep the change you filthy animal";
+				break;
+			case 3:
+				thankYou = "That's all folks";
+				break;
+			case 4:
+				thankYou = "You may hate me, but it ain't no lie -- Baby, bye, bye, bye ";
+				break;
+			case 5:
+				thankYou = "Oh would you look at the time, I best be skadadlin'";
+				break;
+			default:
+				thankYou = "Bye, Felicia!";
+				break;
+		}
+		document.getElementById("thanks").innerHTML = thankYou;
      }	
      function clearText(){
+		document.getElementById("thanks").innerHTML = "";
+		document.getElementById("feedback").innerHTML = "";
      } 						
 </script>
 </head>
