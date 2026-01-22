@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>My Favorite Foods</title>
+<style>
+body{
+	background-image:url('media/Food.jpg');
+	background-repeat:no-repeat;
+	background-position:left;
+	background-size:contain;
+	min-width:300px;
+	min-height:400px;
+	max-width:500px;
+}
+h1{
+	color:tan;
+	font-size:2em;
+	text-shadow:2px 2px black;
+	font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;	
+}
+ol{
+	outline:5px tan inset;
+	background-color:linen;
+	opacity:.8;
+	padding:1%;
+	min-width:200px;
+	max-width:400px;
+}
+li{
+	font-family:"Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	line-height:110%;
+	list-style-position:inside;
+}
+</style>
+</head>
+<body>
+<script>
+	const foodArr = [];
+	var iter = prompt("How many foods would you like to enter?");
+	var validIter = parseInt(iter);
+	while(isNaN(iter)){
+		iter = prompt("Please enter a number");
+		validIter = parseInt(iter);
+	}
+	for(let i = 0; i<validIter; i++){
+		let userFood = prompt(`Enter your ${i+1} food item`);
+		foodArr[i] = userFood;
+	}
+	console.log(foodArr);
+	document.writeln("<h1>Here are your favorite foods!</h1>");
+	document.write("<ul>");
+	for(i = 0; i<validIter; i++){
+		document.write(`<li>${foodArr[i]}</li>`);
+	}
+	document.write("</ul>")
+</script>
+</body>
+</html>
