@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI</title>
+    <style>
+        :root{
+        --text:#21171C;
+     	--border:#562F23;
+     	
+     	--darkaccent:#837288;
+     	--bgcont:#A2634C;
+     	--lightaccent:#D0966C;
+     	
+     	--bgsecond:#F1CEA7;
+    }
+    body{
+        width: 100dvw;
+        height: 100dvh;
+        margin: 0;
+        background-image: url(./media/lofiRacoonCode.jpg);
+        background-repeat:no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    h1{
+        padding: .5em;
+        background-color: var(--border);
+        color: var(--bgsecond);
+        border-radius: 20px;
+        text-shadow: 3px 3px 2px var(--darkaccent);
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height:50dvh;
+        width: 50dvw;
+        background-color: var(--bgsecond);
+        color: var(--text);
+        border-radius: 20px;
+        border: 5px solid var(--lightaccent);
+        box-shadow: 4px 3px 5px var(--darkaccent);
+    }
+    </style>
+</head>
+<body>
+    <h1>BMI Calculator</h1>
+    <form>
+        <label for="weight">Enter your weight (lbs/pounds):</label><br>
+        <input type="text" id="weight" name="weight"><br>
+        <label for="height">Enter your height (inches):</label><br>
+        <input type="text" id="height" name="height"><br>
+        
+        <input type="submit" onclick="calc()">
+    </form>
+</body>
+</html>
