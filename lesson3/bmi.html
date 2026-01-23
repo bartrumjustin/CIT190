@@ -27,6 +27,9 @@
         justify-content: center;
         align-items: center;
     }
+    #result{
+        display: none;
+    }
     h1{
         padding: .5em;
         background-color: var(--border);
@@ -48,16 +51,63 @@
         box-shadow: 4px 3px 5px var(--darkaccent);
     }
     </style>
+    <script>
+        const focus = document.getElementById("weight");
+        
+        
+    </script>
 </head>
-<body>
+<body onload="renderFocus()" >
+    
     <h1>BMI Calculator</h1>
     <form>
         <label for="weight">Enter your weight (lbs/pounds):</label><br>
         <input type="text" id="weight" name="weight"><br>
         <label for="height">Enter your height (inches):</label><br>
-        <input type="text" id="height" name="height"><br>
+        <input  type="text" id="height" name="height"><br>
         
-        <input type="submit" onclick="calc()">
+        <input type="button" onclick="calc()" value="Submit">
+        <h1 id="result"></h1>
     </form>
+    <script>
+        const userWeight = document.getElementById("weight");
+        const userHeight = document.getElementById("height");
+        var validW;
+        var validH;
+        
+        function renderFocus() {
+                userWeight.focus();
+            }
+        function calc(){
+            var testWeight = parseInt(userWeight.value);
+            var testHeight = parseInt(userHeight.value);
+            userWeight.style.backgroundColor = "white";
+            userHeight.style.backgroundColor = "white";
+            if(isNaN(testHeight) || isNaN(testWeight)){
+                alert("please enter a weight (60 - 1000) and a height (35 - 90)");
+            }
+            else if(testWeight < 60 || testWeight > 1000) {
+                console.log("the amount invalid for weight")
+                userWeight.style.backgroundColor = "red";
+                userWeight.value = "Enter weight (60 - 1000)";
+                userWeight.focus();
+            }
+            else if(testHeight < 35 || testHeight > 90){
+                console.log("the amount invalid for height")
+                userHeight.style.backgroundColor = "red";
+                userHeight.value = "Enter height (35 - 90)";
+                userHeight.focus();
+            }
+            else{
+            console.log("height and weight are within parameters");
+            validH = testHeight;
+            validW = testWeight;   
+            var result = (validW * 703) / (validH * validH);
+            document.getElementById("result").textContent = `Your BMI is ${Math.round(result)}`;
+            document.getElementById("result").style.display = "flex";
+            }
+        }
+        
+    </script>
 </body>
 </html>
