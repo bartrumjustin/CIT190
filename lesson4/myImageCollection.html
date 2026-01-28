@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/myImageCollection.css">
+    <title>DOM Image Collection</title>
+</head>
+<body onload="modName();">
+    <a href="./media/japanNight.jpg">
+        <img src="./media/japanNightThumb.jpg" alt="Japan street at night"></a>
+    <a href="./media/moonOnShore.jpg">
+        <img src="./media/moonOnShoreThumb.jpg" alt="Full moon on the shore">
+    </a>
+    <a href="./media/moonWithPinkSky.jpg">
+        <img src="./media/moonWithPinkSkyThumb.jpg" alt="Full moon with pink clouds">
+    </a>
+    <a href="./media/nightOnBoat.png">
+        <img src="./media/nightOnBoatThumb.jpg" alt="Starry night on a boat">
+    </a>
+    <br>
+    <h2>Photo Names:</h2>
+    <p id="name"></p>
+    <h2>Photo Source:</h2>
+    <p id="source"></p>
+    <h2>Text Links:</h2>
+    <p id="link"></p>
+    <script>
+        
+        function modName(){
+            let value = "";
+            for(let i = 0; i<document.images.length; i++){
+                value += " | "+document.images[i].alt + " | ";
+            }
+            document.getElementById("name").innerHTML = value;
+            modSource();
+        }
+        function modSource(){
+            let value = "";
+            for (let i = 0; i < document.images.length; i++) {
+                value += " | " + document.images[i].src + " | ";
+            }
+            document.getElementById("source").innerHTML = value;
+            modLink();
+        }
+        function modLink(){
+            let value = "";
+            for (let i = 0; i < document.images.length; i++) {
+                value += " |  <a href=" + document.links[i].href+ ">"+ document.images[i].alt + "</a> | ";
+            }
+            document.getElementById("link").innerHTML = value;
+        }
+    </script>
+</body>
+</html>
