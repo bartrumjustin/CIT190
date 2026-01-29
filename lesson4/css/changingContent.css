@@ -5,6 +5,10 @@
 --secondaccent: #e2c275;
 --primebg: #E6DBC9;
 }
+@font-face {
+    font-family: firaCode;
+    src: url(../media/FiraCode-Regular.ttf);
+}
 
 html{
     height: 100dvh;
@@ -16,7 +20,12 @@ body{
     margin: 0;
     width: 100dvw;
     height: 100dvh;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Cambria,
+        Cochin,
+        Georgia,
+        Times,
+        'Times New Roman',
+        serif;
     
     background-color: var(--primebg);
     color: var(--primetext);
@@ -35,6 +44,12 @@ header {
 
 .headitem {
     margin: .25em;
+}
+.headBtn{
+    margin: 0 .5em;
+    border-radius: 3em;
+    background-color: var(--secondaccent);
+    flex-wrap: wrap;
 }
 
 .maincont {

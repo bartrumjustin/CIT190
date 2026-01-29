@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily check-in</title>
-    <link rel="stylesheet" href="./css/multipleObjects.css">
+    <link rel="stylesheet" href="./css/changingContent.css">
     <meta name="description" content="A interactive form that users will input there mood then the entry will be logged.">
 </head>
 
-<body class="maincont">
+<body id="font" class="maincont">
     
     <header class="head">
         <h1 class="headitem">Daily Check-In</h1>
         <h2 class="headitem">A simple way to journal your mood and reflect on your day</h2>
+        <button class="headBtn" onclick="nightNight()">Toggle Light/Dark</button>
+        <button class="headBtn" onclick="changeFam()">Toggle Font</button>
+        <button class="headBtn" onclick="clearEntries()">Clear All</button>
     </header>
     <noscript>
         <p>Please Enable JavaScript in order to use this page effectively.</p>
@@ -45,6 +48,7 @@
             <div class="buttoncont">
             <button  id="toSurvey" type="button" onclick="backToSurvey()">Check-in</button>
             <button  id="logs" type="button" onclick="revealLog()">See Logs</button>
+            <button id="clear" type="button" onclick="clearEntries()">Clear All<br>(will redirect to survey)</button>
         </div>
         </section>
     </article>
@@ -63,6 +67,6 @@
         </a>
         <p class="mobile"> &copy; Justin Bartrum 2026</p>
     </footer>
-    <script src="./js/multipleObjects.js"></script>
+    <script src="./js/changingContent.js"></script>
 </body>
 </html>

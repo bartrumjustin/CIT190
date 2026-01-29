@@ -5,7 +5,7 @@ const day = date.getDate();
 const hour = date.getHours();
 const minute = date.getMinutes();
 const format = `${month+1}-${day}-${year} @ ${hour}:${minute}`;
-const log = [];
+let log = [];
 const pos = document.getElementById("positive");
 const neu = document.getElementById("neutral");
 const neg = document.getElementById("negative");
@@ -137,4 +137,51 @@ function revealLog() {
             special.style.display = "none";
         }
     }
+
+}
+function nightNight() {
+    const root = document.documentElement;
+    const get = window.getComputedStyle(root);
+    const check = get.getPropertyValue(`--primetext`);
+    const nightMode = `
+    
+  --primebg: #1a252f;
+  --bgsecond: #3d2b2d;
+  --primetext: #e6dbc9;
+  --primeaccent: #e59a7d;
+  --secondaccent: #f0d697;
+    `;
+    if (check == `#2c3e50`) {
+        root.style.cssText = nightMode;
+    }
+    else {
+        root.style.cssText = `
+    --primetext: #2c3e50;
+    --primeaccent: #D98D68;
+    --bgsecond: #E0A6AA;
+    --secondaccent: #e2c275;
+    --primebg: #E6DBC9;`;
+    }
+}
+function changeFam() {
+    const body = document.getElementById("font");
+    const get = window.getComputedStyle(body);
+    const check = get.fontFamily;
+    const firaCode = `firaCode`;
+    
+    if (check.startsWith("Cambria")) {
+        body.style.fontFamily = firaCode;
+    }
+    else {
+        body.style.fontFamily = `Cambria, Cochin, Georgia, Times, serif`;
+        console.log(check.startsWith('Cambria'));
+    }
+    
+    
+}
+
+function clearEntries() {
+    log.length = 0;
+    console.log(log);
+    location.reload(false);
 }
