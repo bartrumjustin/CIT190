@@ -1,0 +1,275 @@
+:root{
+--primetext: #2c3e50;
+--primeaccent: #D98D68;
+--bgsecond: #E0A6AA;
+--secondaccent: #e2c275;
+--primebg: #E6DBC9;
+}
+
+html{
+    height: 100dvh;
+    width: 100dvw;
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 0;
+    width: 100dvw;
+    height: 100dvh;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+    background-color: var(--primebg);
+    color: var(--primetext);
+}
+header {
+    
+    
+    min-height: 10dvh;
+    max-height: 25dvh ;
+    width: 100dvw;
+    background-color: var(--bgsecond);
+    justify-items: center;
+    box-shadow: 0 0 10px var(--primetext);
+
+}
+
+.headitem {
+    margin: .25em;
+}
+
+.maincont {
+    position: relative;
+    height: 100dvh;
+    display: grid;
+    gap: 1em;
+    
+    grid-template-areas:
+        'head'
+        'art1'
+        'art2'
+        'foot';
+}
+
+.head {
+    grid-area: head;
+}
+
+.article1 {
+    grid-area: art1;
+    height: 45dvh;
+}
+
+.article2 {
+    grid-area: art2;
+    height: 5dvh;
+}
+
+.foot {
+    grid-area: foot;
+}
+.boxcont{
+    position: relative;
+    justify-items: center;
+}
+
+.moodcont{
+    background-color: var(--primebg);
+    justify-content: center;
+    position: absolute;
+    height: 50dvh;
+    width: 90dvw;
+    padding: 1em 1em;
+    background-color: var(--primebg);
+    display: grid;
+    grid-template-areas: 'm1 m2 m3';
+    gap: 1em;
+}
+.moodcont img{
+    width: 25%;
+    height: auto;
+    margin-bottom: 2em;
+    
+}
+.moodcont button{
+    padding: 1em 0;
+    border-radius: 3em;
+    display: flex;
+    flex-direction: column;
+    font-size: 100%;
+    font-weight: 900;
+    align-items: center;
+    
+    
+}
+
+.moodcont button:hover{
+    background-color: var(--primeaccent);
+}
+.moodcont button:active{
+    background-color: var(--secondaccent);
+}
+.mood1{
+    grid-area: m1;
+    
+}
+.mood2 {
+    grid-area: m2;
+}
+.mood3 {
+    grid-area: m3;
+}
+#moodDetail{
+    display:none;
+}
+.detail{
+    
+    position: absolute;
+    height: 70%;
+    width: 95dvw;
+    justify-items: center;
+    background-color: var(--primebg);
+}
+.detailForm{
+    justify-content: end;
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    min-width:40dvw;
+    min-height: 40dvh;
+    
+}
+.detailUserText{
+    font-size: 150%;
+    border: 3px solid var(--primeaccent);
+    background-color: var(--primebg);
+    color: var(--primetext);
+    padding: 1em 1em;
+    flex-grow: 1;
+    border-radius: 20px;
+}
+.textbtn{
+    background-color: var(--secondaccent);
+    box-shadow: 1px 1px 3px var(--primetext);
+    align-self: center;
+    width: 10em;
+    height: 5em;
+    margin-top: 1em;
+    border-radius: 20px;
+}
+.respondcont{
+    display: none;
+    position: absolute;
+        height: 70%;
+        width: 95dvw;
+        justify-content: center;
+        background-color: var(--primebg);
+}
+.resp{
+    font-size: 2.5em;
+}
+.buttoncont{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+.buttoncont>button{
+    background-color: var(--secondaccent);
+    box-shadow: 1px 1px 3px var(--primetext);
+    width: 10em;
+    height: 5em;
+    margin: 1em .5em;
+    border-radius: 20px;
+}
+.logCont{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.logCont section{
+    margin: .25em .25em;
+    padding: .25em .75em;
+    border-radius: 20px;
+    background-color: var(--bgsecond);
+    box-shadow: 1px 2px 4px darkslategray;
+}
+.logCont h3, .logCont h4{
+    text-align: right;
+}
+.logCont h3 {
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: underline;
+}
+.logCont h4{
+    font-weight: 900;
+}
+.logCont details{
+    text-align: center;
+    width: 20dvw;
+    height: auto;
+    overflow-wrap: break-word;
+}
+.foot{
+    margin-top: auto;
+    width: 100dvw;
+    
+    background-color: var(--secondaccent);
+}
+.footcont{
+    display: flex;
+    justify-content: end;
+    
+}
+.foot a{
+    align-self: center;
+    padding: 0 1em;
+    text-decoration: none;
+    color: none;
+}
+.foot p {
+    padding: 0 1em;
+    align-self: center;
+}
+.foot img{
+    width: 2em;
+    height: auto;
+
+}
+
+@media screen and (max-width: 800px) {
+    body{
+        height: auto;
+    }
+    .headitem{
+        margin: 0;
+        padding: .5em .5em;
+    }
+    .maincont{
+        height: 100dvh;
+        display: grid;
+        grid-template-rows: 25% 30% 25%;
+    }
+    .head{
+        font-size: 90%;
+    }
+    .moodcont img{
+        z-index: 0;
+    }
+    
+    .logCont details {
+        width: 75%;
+    }
+    .footcont{
+        
+        height: auto;
+        padding-top: 1em;
+        
+    }
+    .mobile{
+        
+        font-size: 90%;
+    }
+}

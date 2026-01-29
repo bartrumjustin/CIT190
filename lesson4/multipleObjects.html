@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily check-in</title>
+    <link rel="stylesheet" href="./css/multipleObjects.css">
+    <meta name="description" content="A interactive form that users will input there mood then the entry will be logged.">
+</head>
+
+<body class="maincont">
+    
+    <header class="head">
+        <h1 class="headitem">Daily Check-In</h1>
+        <h2 class="headitem">A simple way to journal your mood and reflect on your day</h2>
+    </header>
+    <noscript>
+        <p>Please Enable JavaScript in order to use this page effectively.</p>
+    </noscript>
+    <article id="survey" class="boxcont article1">
+        <section id="mood" class="moodcont">
+            <button type="button" id="positive" class="mood1">
+                <img class="moodimg1" src="./media/smile.png" alt="smiling emoji">
+               I Feel Positive
+            </button>
+            <button type="button" id="neutral" class="mood2">
+                <img class="moodimg2" src="./media/nothing.png" alt="no mouth emoji">
+                I Feel Indifferent
+            </button>
+            <button type="button" id="negative" class="mood3">
+                <img class="moodimg3" src="./media/frown.png" alt="frown emoji">
+                I Feel Negative
+            </button>
+            </section>
+            <section id="moodDetail" class="detail">
+                <h3 id="detailInstruct">Please answer the following based on your selection.</h3>
+                <form class="detailForm">
+                    <textarea id="userText" class="detailUserText" maxlength="200" placeholder="200 letter max"></textarea>
+                    <button class="textbtn" type="button" onclick="getText()">Submit</button>
+                </form>
+            </section>
+        
+        <section id="responding" class="respondcont">
+            <h3 id="response" class="resp mobile"></h3>
+            <div class="buttoncont">
+            <button  id="toSurvey" type="button" onclick="backToSurvey()">Check-in</button>
+            <button  id="logs" type="button" onclick="revealLog()">See Logs</button>
+        </div>
+        </section>
+    </article>
+    <article id="loggedAnswers" class="logCont article2">
+
+    </article>
+    <footer class="foot footcont special">
+        <a href="https://www.bartrumjust.in" target="_blank">
+            <img class="icon mobile" src="./media/home.svg" alt="Link to personal page">
+        </a>
+        <a href="https://linkedin.com/in/justbartdev">
+            <img class="icon mobile" src="./media/linkedin.svg" alt="Link to linkedin profile">
+        </a>
+        <a href="https://github.com/bartrumjustin">
+            <img class="icon mobile" src="./media/github.svg" alt="link to Github repos">
+        </a>
+        <p class="mobile"> &copy; Justin Bartrum 2026</p>
+    </footer>
+    <script src="./js/multipleObjects.js"></script>
+</body>
+</html>
