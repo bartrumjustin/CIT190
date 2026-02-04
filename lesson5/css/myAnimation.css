@@ -1,0 +1,13 @@
+/*button 1 will alter the skyline colors*/
+body{
+    margin: 0;
+    padding: 0;
+}
+article{
+    margin: 0;
+    width: 100dvw;
+    height: 100dvh;
+    background-image: url(../media/CityScapeBGRemoved.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
