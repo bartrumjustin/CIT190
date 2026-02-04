@@ -1,7 +1,15 @@
-﻿function windChill() {
+﻿
+
+window.onload = getFocus();
+var btn_calc = document.getElementById("calc");
+var btn_reset = document.getElementById("reset");
+
+function windChill() {
 
 	var wind=parseFloat(document.getElementById("wind").value);
-	var temp=parseFloat(document.getElementById("temp").value);
+	var temp = parseFloat(document.getElementById("temp").value);
+	
+	
 	
 	if(isNaN(wind) || wind===0)
 		document.getElementById("results").innerHTML = "<p id='error'>Please enter a number greater than zero for the wind speed!</p>";
@@ -19,9 +27,14 @@
 	}	
 
 }
-function getFocus(){
+function getFocus() {
+	console.log("triggered getfocus method");
 	document.getElementById("wind").focus();
-	document.getElementById("results").innerHTML=" ";
+	console.log("Focused")
+	document.getElementById("results").innerHTML = " ";
+	console.log("clear results and method ends");
 }
+btn_calc.addEventListener("click", windChill);
+btn_reset.addEventListener("click", getFocus);
 
 
