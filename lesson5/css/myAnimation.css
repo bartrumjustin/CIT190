@@ -1,13 +1,61 @@
 /*button 1 will alter the skyline colors*/
+@font-face {
+    font-family: clock;
+    src: url(../fonts/DS-DIGIB.TTF);
+
+}
 body{
     margin: 0;
     padding: 0;
+    position: static;
+    overflow: hidden;
 }
-article{
+#bg{
+    position: fixed;
+    
+    background-image: linear-gradient(to top, #070B34, #141852, #3c0f56, #a55b4b, #f1bd58, #69ebfc
+    , #369acc, #a2d6ff);
+    width: 100dvw;
+    height: 100dvh;
+    
+}
+#cityScape{
+    position: fixed;
+    bottom:0;
     margin: 0;
     width: 100dvw;
     height: 100dvh;
     background-image: url(../media/CityScapeBGRemoved.png);
     background-repeat: no-repeat;
     background-size: cover;
+}
+#time #displayT{
+    color: #FF3333;
+    text-shadow: 0 0 10px #FF4500;
+    align-content: center;
+    letter-spacing: .25em;
+    text-align: center;
+    font-size: 10dvh;
+    font-family: clock;
+    height: 15dvh;
+    width: 33dvw;
+    z-index: 2;
+    
+    position: fixed;
+    bottom: 10%;
+    right: 33%;
+}
+#buttons{
+    padding-bottom: 1.5em;
+    height: 7.5dvh;
+    width: 33dvw;
+    position: fixed;
+    bottom: 0;
+    right: 33%;
+}
+button{
+    
+    height: 7.5dvh;
+    width: 8.07dvw;
+
 }
