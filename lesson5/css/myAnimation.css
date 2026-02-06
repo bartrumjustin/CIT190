@@ -12,12 +12,19 @@ body{
 }
 #bg{
     position: fixed;
-    
+    bottom: 0dvh;
     background-image: linear-gradient(to top, #070B34, #141852, #3c0f56, #a55b4b, #f1bd58, #69ebfc
     , #369acc, #a2d6ff);
     width: 100dvw;
-    height: 100dvh;
+    height: 1300dvh;
     
+}
+#specialBG{
+    object-fit: fill;
+    position: fixed;
+    bottom: -25dvh;
+    width: 100dvw;
+    height: 125dvh;
 }
 #cityScape{
     position: fixed;
@@ -58,4 +65,16 @@ button{
     height: 7.5dvh;
     width: 8.07dvw;
 
+}
+#data{
+    color:#FF3333 ;
+    text-shadow: 0 0 8px #FF4500;
+    font-size: 2.5dvh;
+    height: auto;
+    width: auto;
+    margin: 2em;
+    padding: 1.5em;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
