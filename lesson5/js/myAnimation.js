@@ -14,11 +14,11 @@ let i = -1;
 
 //defaults
 
-window.addEventListener("load", function () {console.log("load"),(traffic("real")) });
-real.addEventListener("click", function () { console.log("clickReal"), (traffic("real")) });
-dawn.addEventListener("click", function () { console.log("clickDawn"), (traffic("dawn")) });
-dusk.addEventListener("click", function () { console.log("clickDusk"), (traffic("dusk")) });
-spec.addEventListener("click", function () { console.log("clickSpecial"), (traffic("spec")) }, { once: true });
+window.addEventListener("load", realTime);
+real.addEventListener("click", realTime);
+dawn.addEventListener("click", Dawn);
+dusk.addEventListener("click", Dusk);
+spec.addEventListener("click", Spec);
 //methods
 function traffic(a) {
     if (a === "real" && running != "RealId") {
@@ -30,15 +30,12 @@ function traffic(a) {
         const RealId = setInterval(realTime, 25000);
         running = RealId;
     }
-    else if (a === "real" && running == "RealId") {
-        console.log("already running");
-    }
     else if (a === "dawn") {
         
         clearInterval(running);
         console.log(`stopped ${running}`);
         TOD = -300;
-        display.innerHTML = "Dawn/Noon Simulated";
+        display.innerHTML = "Dawn/Noon";
         const DawnId = setInterval(Dawn, 100);
         running = DawnId;
     }
@@ -46,7 +43,7 @@ function traffic(a) {
         clearInterval(running);
         console.log(`stopped ${running}`);
         TOD = -1200;
-        display.innerHTML = "Noon/Dusk Simulated";
+        display.innerHTML = "Noon/Dusk";
         const DuskId = setInterval(Dusk, 100);
         running = DuskId;
     }
@@ -55,24 +52,34 @@ function traffic(a) {
         clearInterval(running);
         display.innerHTML = "Special Event";
         i++;
+        
         Spec();
         
     }
 }
 function Spec() {
+    real.removeEventListener("click", realTime);
+    dawn.removeEventListener("click", Dawn);
+    dusk.removeEventListener("click", Dusk);
+    spec.removeEventListener("click", Spec);
     let o = 1;
-    let int = (TOD - 1200) - 1159 ;
+    let int;
     const getSpec = document.getElementById("specialBG");
     const list = '../lesson5/media/arouraNight.mp4';
-    const name = "Auroa";
+    
     const night = setInterval(function () {
-        if (int > -5) {
-            clearInterval(night);
+        if (TOD > 1200) {
+            int = (TOD - 1200) - 1159;
         }
+        else { int = -TOD };
+            if (int > -5) {
+                clearInterval(night);
+            }
+        
         else {
             
             int += 5;
-            bg.style.bottom = `${int}dvh`;
+            bg.style.bottom = `${int}%`;
             stat = "Running Aroura Environment<br>style.bottom: " + int;
             giveData();
         }
@@ -108,13 +115,20 @@ function Spec() {
                 bg.style.opacity = `${o}`;
             }
         }, 500);
-    }, 15000);
+        
+}, 15000);
     
     traffic("real");
 }
 
 
-function Dusk (){
+function Dusk() {
+    clearInterval(running);
+    console.log(`stopped ${running}`);
+    TOD = -1200;
+    display.innerHTML = "Noon/Dusk";
+    const DuskId = setInterval(Dusk, 100);
+    running = DuskId;
     TOD += 5;
     bg.style.bottom = `${TOD}dvh`;
     stat = "Running Dusk Environment<br>style.bottom: " + TOD;
@@ -129,6 +143,12 @@ function Dusk (){
 }
 
 function Dawn() {
+    clearInterval(running);
+    console.log(`stopped ${running}`);
+    TOD = -300;
+    display.innerHTML = "Dawn/Noon";
+    const DawnId = setInterval(Dawn, 100);
+    running = DawnId;
     TOD -= 2;
     bg.style.bottom = `${TOD}dvh`;
     stat = "Running Dawn Environment<br>style.bottom: " +TOD;
@@ -146,7 +166,8 @@ function Dawn() {
     
 
 function realTime() {
-    
+    const RealId = setInterval(realTime, 25000);
+    running = RealId;
     console.log("checking...");
     const d = new Date();
     let hour = d.getHours();
