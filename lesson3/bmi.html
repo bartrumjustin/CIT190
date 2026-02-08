@@ -38,17 +38,25 @@
         text-shadow: 3px 3px 2px var(--darkaccent);
     }
     form{
+        padding: 0 .5em;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height:50dvh;
-        width: 50dvw;
+        min-height:50dvh;
+        min-width: 50dvw;
         background-color: var(--bgsecond);
         color: var(--text);
         border-radius: 20px;
         border: 5px solid var(--lightaccent);
         box-shadow: 4px 3px 5px var(--darkaccent);
+    }
+    .btn{
+        min-height: 44px;
+        min-width: 200px;
+        border-radius: 5px;
+        padding:.5em 0;
+        margin: .5em 0;
     }
     </style>
     <script>
@@ -66,7 +74,8 @@
         <label for="height">Enter your height (inches):</label><br>
         <input  type="text" id="height" name="height"><br>
         
-        <input type="button" onclick="calc()" value="Submit">
+        <input class="btn" type="button" onclick="calc()" value="Submit">
+        <input class="btn" type="reset" onclick="clearResult()" value="Reset">
         <h1 id="result"></h1>
     </form>
     <script>
@@ -106,6 +115,14 @@
             document.getElementById("result").textContent = `Your BMI is ${Math.round(result)}`;
             document.getElementById("result").style.display = "flex";
             }
+        }
+        function clearResult(){
+            console.log("reset");
+            
+            document.getElementById("result").style.display = 'none';
+            userWeight.focus();
+            
+            
         }
         
     </script>
