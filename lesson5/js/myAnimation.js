@@ -13,51 +13,20 @@ let i = -1;
 
 
 //defaults
-
-window.addEventListener("load", realTime);
-real.addEventListener("click", realTime);
-dawn.addEventListener("click", Dawn);
-dusk.addEventListener("click", Dusk);
-spec.addEventListener("click", Spec);
-//methods
-function traffic(a) {
-    if (a === "real" && running != "RealId") {
-        if (running != null) {
-            clearInterval(running);
-        }
-        console.log("Clock started");
-        realTime();
-        const RealId = setInterval(realTime, 25000);
-        running = RealId;
-    }
-    else if (a === "dawn") {
-        
-        clearInterval(running);
-        console.log(`stopped ${running}`);
-        TOD = -300;
-        display.innerHTML = "Dawn/Noon";
-        const DawnId = setInterval(Dawn, 100);
-        running = DawnId;
-    }
-    else if (a === "dusk") {
-        clearInterval(running);
-        console.log(`stopped ${running}`);
-        TOD = -1200;
-        display.innerHTML = "Noon/Dusk";
-        const DuskId = setInterval(Dusk, 100);
-        running = DuskId;
-    }
-
-    else if (a === "spec") {
-        clearInterval(running);
-        display.innerHTML = "Special Event";
-        i++;
-        
-        Spec();
-        
-    }
+listening();
+function listening() {
+    window.addEventListener("load", realTime);
+    real.addEventListener("click", realTime);
+    dawn.addEventListener("click", Dawn);
+    dusk.addEventListener("click", Dusk);
+    spec.addEventListener("click", Spec);
 }
+//methods
+
 function Spec() {
+    const btn = document.getElementById("buttons");
+    btn.style.visibility = 'hidden';
+    display.style.visibility = 'hidden';
     real.removeEventListener("click", realTime);
     dawn.removeEventListener("click", Dawn);
     dusk.removeEventListener("click", Dusk);
@@ -66,130 +35,131 @@ function Spec() {
     let int;
     const getSpec = document.getElementById("specialBG");
     const list = '../lesson5/media/arouraNight.mp4';
-    
-    const night = setInterval(function () {
-        if (TOD > 1200) {
-            int = (TOD - 1200) - 1159;
-        }
-        else { int = -TOD };
-            if (int > -5) {
-                clearInterval(night);
-            }
-        
-        else {
-            
-            int += 5;
-            bg.style.bottom = `${int}%`;
-            stat = "Running Aroura Environment<br>style.bottom: " + int;
-            giveData();
-        }
-    }, 100);
-    
+    clearInterval(running);
+    //fade opacity to translucent bg
     bg.style.opacity = "1";
-    const opac = setInterval(function () {
+    let opac = setInterval(function () {
         if (o <= 0.05) {
-            bg.style.opacity = 0;
+            o = 0;
+            bg.style.opacity = `${o}`;
+            getSpec.play();
             clearInterval(opac);
         }
         else if (o > 0.95) {
             getSpec.src = list;
             getSpec.load();
-            getSpec.play();
+            
             o -= 0.05;
         }
         else {
-            o -= 0.05;
+            o -= 0.02;
             bg.style.opacity = `${o}`;
+            
         }
-    }, 500);
+        stat = `Running Aroura Environment<br>style.opacity: ${o}` + "<br>Options hidden until complete";
+        giveData();
+    }, 100);
+    //bring back bg opacity
     setTimeout(function () {
         bg.style.opacity = 0;
         let o = 0;
-        const opac = setInterval(function () {
+        running = setInterval(function () {
             if (o >= 0.95) {
                 bg.style.opacity = 1;
-                clearInterval(opac);
+                clearInterval(running);
+                realTime();
             }
             else {
-                o += 0.05;
+                o += 0.02;
                 bg.style.opacity = `${o}`;
             }
-        }, 500);
-        
-}, 15000);
-    
-    traffic("real");
+            stat = `Returning to Real Time<br>style.opacity: ${o}`;
+            giveData();
+        }, 100);
+        btn.style.visibility = 'visible';
+        display.style.visibility = 'visible';
+        listening();
+}, 20000);
 }
 
 
 function Dusk() {
     clearInterval(running);
-    console.log(`stopped ${running}`);
+    real.removeEventListener("click", realTime);
+    dawn.removeEventListener("click", Dawn);
+    dusk.removeEventListener("click", Dusk);
+    spec.removeEventListener("click", Spec);
+    console.log(`stopped previous...disable listeners`);
     TOD = -1200;
     display.innerHTML = "Noon/Dusk";
-    const DuskId = setInterval(Dusk, 100);
-    running = DuskId;
-    TOD += 5;
-    bg.style.bottom = `${TOD}dvh`;
-    stat = "Running Dusk Environment<br>style.bottom: " + TOD;
-    giveData();
-    if (TOD === -300) {
-        clearInterval(running);
-        stat = "Noon/Dusk Environment Complete";
+    running = setInterval(function () {
+        TOD += 5;
+        bg.style.bottom = `${TOD}dvh`;
+        stat = "Running Dusk Environment<br>style.bottom: " + TOD + "<br>Options disabled until complete";
         giveData();
-        
-
-    }
+        if (TOD === -300) {
+            clearInterval(running);
+            stat = "Noon/Dusk Environment Complete";
+            giveData();
+            listening();
+        }
+}, 100);
+    
 }
 
 function Dawn() {
     clearInterval(running);
-    console.log(`stopped ${running}`);
+    real.removeEventListener("click", realTime);
+    dawn.removeEventListener("click", Dawn);
+    dusk.removeEventListener("click", Dusk);
+    spec.removeEventListener("click", Spec);
+        console.log(`stopped previous...running Dawn`);
     TOD = -300;
     display.innerHTML = "Dawn/Noon";
-    const DawnId = setInterval(Dawn, 100);
-    running = DawnId;
-    TOD -= 2;
-    bg.style.bottom = `${TOD}dvh`;
-    stat = "Running Dawn Environment<br>style.bottom: " +TOD;
-    giveData();
-    if (TOD == -1200) {
-        clearInterval(running);
-        stat = "Dawn/Noon Environment Complete";
+    running = setInterval(function () {
+        TOD -= 2;
+        bg.style.bottom = `${TOD}dvh`;
+        stat = "Running Dawn Environment<br>style.bottom: " + TOD + "<br>Options disabled until complete";
         giveData();
-         
-            
-    }
-
+        if (TOD == -1200) {
+            clearInterval(running);
+            stat = "Dawn/Noon Environment Complete";
+            giveData();
+            listening();
+        }
+}, 100);
+    
 }
 
     
 
 function realTime() {
-    const RealId = setInterval(realTime, 25000);
-    running = RealId;
-    console.log("checking...");
-    const d = new Date();
-    let hour = d.getHours();
-    let rawMinute = d.getMinutes();
-    let minute = (rawMinute < 10 ? '0' : '') + rawMinute;
-    clock = hour + ":" + minute;
-    TOD = hour + minute;
-    console.log(TOD);
-    if (TOD > 1200) {
-        let inv = (TOD - 1200)-1159;
-        console.log(inv);
-        bg.style.bottom = `${inv}dvh`;
-        stat = "Real Time Sync<br>style.bottom: " + inv;
-    }
-    else {
-        bg.style.bottom = -TOD;
-        stat = "Real Time Sync<br>style.bottom: " + -TOD;
-    }
+        clearInterval(running);
+    running = setInterval(function () {
+        console.log("checking...realTime is running");
+        const d = new Date();
+        let hour = d.getHours();
+        let rawMinute = d.getMinutes();
+        let minute = (rawMinute < 10 ? '0' : '') + rawMinute;
+        clock = hour + ":" + minute;
+        TOD = hour + minute;
+        console.log(TOD);
+        if (TOD > 1200) {
+            let inv = (TOD - 1200) - 1159;
+            console.log(inv);
+            bg.style.bottom = `${inv}%`;
+            stat = "Real Time Sync<br>style.bottom: " + inv;
+        }
+        else {
+            bg.style.bottom = `${-1*TOD}%`;
+            stat = "Real Time Sync<br>style.bottom: " + -TOD;
+        }
+
+        display.innerHTML = clock;
+
+        giveData();
+    }, 1000);
     
-    display.innerHTML = clock;
-    
-    giveData();
 
 }
 
