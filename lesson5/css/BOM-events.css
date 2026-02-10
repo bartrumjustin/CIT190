@@ -1,0 +1,52 @@
+:root{
+    
+    --bg :#121212;
+    --secBg:#2C2C2C;
+    --text:#F7F7F7;
+    --secText: #B3B3B3;
+    --btn :#007BFF;
+    --btnHA:#3700B3;
+
+}
+@font-face {
+    font-family: text;
+    src: url(../../lesson4/media/FiraCode-Regular.ttf);
+}
+h1{
+    text-align: center;
+    font-size: 1.2em;
+}
+p{
+    padding-left: 1em;
+    font-size: 1em;
+}
+body{
+    font-family: text;
+    height: 100dvh;
+    width: 100dvw;
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    display: grid;
+    grid-template-rows: 16%, 16%, 16%, 16%,
+        16%,
+        16%;
+}
+body > section{
+    background-color: var(--secBg);
+    color: var(--secText);
+    margin: .1em .25em;
+    border-radius: 20px;
+}
+body>button{
+    min-height: 44px;
+    font-family: text;
+    color: var(--text);
+    margin: .1em .2em;
+    border-radius: 20px;
+    background-color: var(--btn);
+}
+button:hover, button:active{
+    background-color: var(--btnHA);
+    color: var(--secText);
+}
