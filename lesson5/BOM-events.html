@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./css/BOM-events.css">
     <title>BOM-events</title>
 </head>
-<body>
+<body id="load">
     <button id="winMethodClose" type="button">Close Window</button>
     <button id="winMethodOpen" type="button">Open a New Window</button>
     <button id="replaceURL" type="button">Redirect to NMC</button>
@@ -22,18 +22,93 @@
     </section>
     <section id="window">
         <h1>Window.Property</h1>
-        <p id="height">test</p>
-        <p id="width">test</p>
+        <p id="wHeight">test</p>
+        <p id="wWidth">test</p>
     </section>
     <section id="history">
         <h1>History.Property</h1>
-        <p id="forward">test</p>
-        <p id="backward">test</p>
+        <button id="forward">Forward()</button>
+        <button id="backward">Back()</button>
     </section>
     <section id="screen">
         <h1>Screen.Property</h1>
-        <p id="height">test</p>
-        <p id="width">test</p>
+        <p id="sHeight">test</p>
+        <p id="sWidth">test</p>
     </section>
 </body>
+<script>
+    
+    const loadStart = document.getElementById('load');
+    const btnClose = document.getElementById('winMethodClose');
+    const btnOpen = document.getElementById('winMethodOpen');
+    const replace = document.getElementById('replaceURL');
+    const locHost = document.getElementById("hostName");
+    const locPath = document.getElementById('pathName');
+    const navCook = document.getElementById('cookies');
+    const navOnline = document.getElementById('online');
+    const winH = document.getElementById('wHeight');
+    const winW = document.getElementById('wWidth');
+    const screenH = document.getElementById('sHeight');
+    const screenW = document.getElementById('sWidth');
+    
+    window.addEventListener("load", function(){ getLocation(); getNav(); getWin(); getHis(); getScreen();});
+    document.getElementById('location').onclick = getLocation;
+    document.getElementById('navigator').onclick = getNav;
+    document.getElementById('window').onclick = getWin;
+    document.getElementById('history').onclick = getHis;
+    document.getElementById('screen').onclick = getScreen;
+    window.alert("Click On The Individual Cards To Update");
+    
+    function getLocation(){
+        let winLocHost = location.host;
+        let winLocPath = location.pathname;
+        console.log(winLocHost, winLocPath);
+        locHost.textContent = winLocHost;
+        locPath.textContent = winLocPath;
+        
+    }
+    function getNav(){
+        let winNavCook = navigator.cookieEnabled;
+        let winNavOn = navigator.onLine;
+        let cook;
+        let on;
+        if(winNavCook){
+            cook = "Cookies Enabled";
+        }
+        else{
+            cook = "Cookies Disabled";
+        }
+        if(winNavOn){
+            on = "Status: Online"; 
+        }
+        else{
+            on = "Status: Offline";
+        }
+        console.log(cook+" / "+ on);
+        navCook.textContent = cook;
+        navOnline.textContent = on;
+        
+    }
+    function getWin(){
+        let vh = window.outerHeight;
+        let vw = window.outerWidth;
+        console.log(vh+" / "+vw);
+        winH.textContent = "Browser Height(px): "+vh;
+        winW.textContent = "Browser Width(px): "+vw;
+        
+    }
+    function getHis(){
+        let hFor = history.forward;
+        let hBac = history.back;
+        console.log(hFor+" / "+hBac);
+        
+    }
+    function getScreen(){
+        let sh = screen.height;
+        let sw = screen.width;
+        console.log(sh+" / "+sw);
+        screenH.textContent = "Screen Height(px): "+sh;
+        screenW.textContent = "Screen Width(px): "+sw;
+    }
+</script>
 </html>

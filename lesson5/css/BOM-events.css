@@ -12,11 +12,11 @@
     font-family: text;
     src: url(../../lesson4/media/FiraCode-Regular.ttf);
 }
-h1{
+h1{ 
     text-align: center;
     font-size: 1.2em;
 }
-p{
+p{ 
     padding-left: 1em;
     font-size: 1em;
 }
@@ -33,13 +33,15 @@ body{
         16%;
 }
 body > section{
+    
     background-color: var(--secBg);
     color: var(--secText);
     margin: .1em .25em;
     border-radius: 20px;
 }
-body>button{
-    min-height: 44px;
+button{
+    
+    min-height: 50px;
     font-family: text;
     color: var(--text);
     margin: .1em .2em;
@@ -49,4 +51,12 @@ body>button{
 button:hover, button:active{
     background-color: var(--btnHA);
     color: var(--secText);
+}
+#history{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#history>button{
+    min-width: 100%;
 }
