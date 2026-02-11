@@ -51,12 +51,14 @@
     const screenH = document.getElementById('sHeight');
     const screenW = document.getElementById('sWidth');
     
-    window.addEventListener("load", function(){ getLocation(); getNav(); getWin(); getHis(); getScreen();});
+    window.addEventListener("load", function(){ getLocation(); getNav(); getWin(); getScreen();});
     document.getElementById('location').onclick = getLocation;
     document.getElementById('navigator').onclick = getNav;
     document.getElementById('window').onclick = getWin;
-    document.getElementById('history').onclick = getHis;
+    
     document.getElementById('screen').onclick = getScreen;
+    document.getElementById('forward').onclick = hFor;
+    document.getElementById('backward').onclick = hBac;
     window.alert("Click On The Individual Cards To Update");
     
     function getLocation(){
@@ -97,12 +99,13 @@
         winW.textContent = "Browser Width(px): "+vw;
         
     }
-    function getHis(){
-        let hFor = history.forward;
-        let hBac = history.back;
-        console.log(hFor+" / "+hBac);
-        
+    function hFor(){
+        let k = history.forward();
     }
+    function hBac(){
+        let k = history.back();
+    }
+    
     function getScreen(){
         let sh = screen.height;
         let sw = screen.width;
