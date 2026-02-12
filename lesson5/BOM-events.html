@@ -52,15 +52,40 @@
     const screenW = document.getElementById('sWidth');
     
     window.addEventListener("load", function(){ getLocation(); getNav(); getWin(); getScreen();});
-    document.getElementById('location').onclick = getLocation;
-    document.getElementById('navigator').onclick = getNav;
-    document.getElementById('window').onclick = getWin;
+    btnClose.onclick = function(){click("close")};
+    btnOpen.onclick = function(){click("open")};
+    replace.onclick = function(){click("replace")};
+    let locCard = document.getElementById('location');
+    locCard.onclick = getLocation;
+    let navCard = document.getElementById('navigator');
+    navCard.onclick = getNav;
+    let winCard = document.getElementById('window');
+    winCard.onclick = getWin;
+    let screenCard = document.getElementById('screen');
+    screenCard.onclick = getScreen;
+    let forCard = document.getElementById('forward');
+    forCard.onclick = hFor;
+    let bacCard = document.getElementById('backward');
+    bacCard.onclick = hBac;
     
-    document.getElementById('screen').onclick = getScreen;
-    document.getElementById('forward').onclick = hFor;
-    document.getElementById('backward').onclick = hBac;
     window.alert("Click On The Individual Cards To Update");
-    
+    function click(a){
+        //close window
+        if(a == "close"){
+            let closer = window.open("https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyNHlxajR1ODdqanp1cXVheDJtM3V1a3g3NGQxOG8ybm1weDF0dDFvaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7ZeTlKIJS83gyhd6/200.gif");
+            setTimeout(function(){closer.close();}, 1900);
+            
+        }
+        //open window
+        else if (a == "open"){
+            window.open("https://bartrumjust.in");
+        }
+        //replace window
+        else {
+            location.replace("https://nmc.edu");
+        }
+    }
+
     function getLocation(){
         let winLocHost = location.host;
         let winLocPath = location.pathname;
