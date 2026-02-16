@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>My Drag And Drop</title>
+    <style>
+        body {
+            margin: 0;
+            width: 100dvw;
+            height: 100dvh;
+            background-image: url(./media/StartBG.avif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+        #obj1{
+            transform: rotate(90deg);
+            max-width: 125px;
+            max-height: 125px;
+        }
+        #obj2{
+            max-height: 250px;
+            max-width: 250px;
+        }
+
+        img{
+            max-height: 200px;
+            max-width: 200px;
+        }
+        
+    </style>
+    <script>
+        $(function () {
+            $("#obj1").draggable({containment: "parent"});
+            $("#obj2").draggable({ containment: "parent" });
+            $("#obj3").draggable({ containment: "parent" });
+            $("#obj4").draggable({ containment: "parent" });
+            $("#obj5").draggable({ containment: "parent" });
+            $("#obj6").draggable({ containment: "parent" });
+
+        });
+    </script>
+</head>
+
+<body>
+<img id="obj1" src="./media/fighterShip-removebg-preview.png" alt="fighter ship">
+<img id="obj2" src="./media/futuramaShip-removebg-preview.png" alt="futurama ship">
+<img id="obj3" src="./media/greenPlanet-removebg-preview.png" alt="green planet">
+<img id="obj4" src="./media/purpPlanet-removebg-preview.png" alt="purple planet">
+<img id="obj5" src="./media/shootingStar-removebg-preview.png" alt="shooting star">
+<img id="obj6" src="./media/star-removebg-preview.png" alt="star">
+</body>
+
+</html>
