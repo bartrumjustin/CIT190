@@ -14,7 +14,7 @@
     src: url(../fonts/IBMPlexSans-Regular.ttf);
 }
 body{
-    
+    color: var(--text);
     font-family: ibm ;
     margin: 0;
     background-color: var(--bg);
@@ -45,18 +45,24 @@ h1{
 }
 #menuBtn{
     min-height: 80px;
-    min-width: 80px;
+    min-width: 50px;
     border-radius:0 0 0 0;
     border: none;
     outline: none;
     background-color: var(--accentBB);
-    padding: .25em .73em;
+    padding: ;
     font-size: 2em;
     color: var(--bg);
     cursor: pointer;
 }
+
+
+#menuBtn:active, 
+#menu>button:active{
+    background-color: var(--accentBBAct);
+}
 #menu{ 
-    min-width: 80px;
+    min-width: 50px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -70,7 +76,7 @@ h1{
     color: var(--bg);
     background-color: var(--accentBB);
     font-size: 2em;
-    padding: .25em .75em;
+    padding: .3em;
 }
 #UIcont{
     width: 100%;
@@ -82,7 +88,7 @@ h1{
     
 }
 .card{
-    box-shadow: 0 0 .4em var(--accentNG);
+    box-shadow: 0 0 .4em var(--accentBB);
 }
 #mid{
     display: inline-flex;
@@ -99,4 +105,31 @@ h1{
 #UIcont p {
     font-size: 1em;
     padding: 0 .5em;
+}
+footer{
+    
+    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+}
+footer>p{
+    font-size: 1.05em;
+    padding: .5em .5em;
+    background-color: var(--alert);
+    color: var(--text);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin: 0;
+    
+}
+
+@media screen and (min-width: 800px) {
+
+#menuBtn:hover,
+#menu>button:hover, 
+{
+    background-color: var(--accentBBAct);
+}
 }

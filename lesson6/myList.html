@@ -4,32 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/myList.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
---><title>myList</title>
+-->
+    
+    <title>myList</title>
 </head>
 <body>
-    <p id="placeholder">Press the Menu icon to begin</p>
+    <p id="placeholder">Click &#9744; to begin</p>
     <section id="top">
         <button id="menuBtn" type="button">&#9776;</button>
         <h1 id="title">Power Worker</h1>
     </section>
     <section id="mid">    
-    <div id="menu">
-        <button type="button" id="WOitems">&#9744;</button>
-        <button type="button" id="Techitems">&#9745;</button>
-        <button type="button" id="Dateitems">&#9746;</button>
+    <div id="menu" class="menuVis">
+        <button type="button" id="WOitems" class="menuVis">&#9744;</button>
+        <button type="button" id="Techitems" class="menuVis">&#9745;</button>
+        <button type="button" id="Dateitems" class="menuVis">&#9746;</button>
     </div>
     <div id="UIcont">
-    <article id="card1" class="card">
+    <article id="card1" class="card menuVis">
         <p id="Ord" class="test">ORDERS</p>
     </article>
-    <article id="card2" class="card">
+    <article id="card2" class="card menuVis">
         <p id="Wor" class="test">WORKERS</p>
     </article>
-    <article id="card3" class="card">
+    <article id="card3" class="card menuVis">
         <p id="Dat" class="test">DATE</p>
     </article>
     </div>
 </section>
+<footer>
+    <p class="instruct">Click on the Order icon or card to get started.</p>
+</footer>
 </body>
+<script>
+    const Alert = $("#placeholder");
+    const menu = $("#menuBtn");
+    const WO =  $("#WOitems , #card1");
+    const WOCard = $("#card1 p");
+    const Tech = $("#Techitems , #card2");
+    const TechCard = $("#card2 p");
+    const Date = $("#Dateitems , #card3");
+    const DateCard = $("#card3 p");
+    var noData = true;
+    var noWO = true;
+    var noTech = true;
+    var noDate = true;
+    
+        WO.on('click', function () {
+            console.log("Orders menu");
+            noData = false;
+            
+            WOmenu();
+        })
+        Tech.on('click', function(){
+            if(noData){
+                TopAlert(0, "Workers Locked!");
+            }
+        })
+        Date.on('click', function(){
+            if (noData) {
+                TopAlert(0, "Date Locked!");
+            }
+        })
+    
+    
+    function TopAlert(a, b){
+        console.log("error has occured");
+        if(a == 0){
+            Alert.text(`${b}`);
+            console.log(b);
+        }
+    }
+    function WOmenu(){
+        let arr = ["Add", "Assign", "Complete/Remove"];
+        var footer = "&#9744; to Create Work Order<br>&#9745; to Assign<br>"+
+        "&#9746; to Complete/Remove Work Order";
+        if(noWO){
+            footer = "&#9744; to Create Work Order<br>(1/10)";
+        }
+        $(".instruct").html(footer);
+        WOCard.text(arr[0]);
+        TechCard.text(arr[1]);
+        DateCard.text(arr[2]);
+        WO.on('click', function () {
+            Add(1);
+        });
+        Tech.on('click', function () {
+            if(noWO){
+                TopAlert(0, "Assign Locked! click Add!");
+            }
+            AssignActive(1);
+        })
+        Date.on('click', function () {
+            if (noWO) {
+                TopAlert(0, "Complete/Remove Locked! click Add!");
+            }
+            CompRemove(1);
+        })
+    }
+    //this var will keep user from exiting menu until they pick an option.
+    function normalOp(){
+    menu.on('click', function(){
+            $(".menuVis").fadeToggle('slow');
+        })
+    WO.on('click', function(){
+        console.log("Orders menu");
+    })
+    Tech.on('click', function () {
+        console.log("Tech menu");
+        })
+    Date.on('click', function () {
+        console.log("Date menu");
+        })
+    }
+</script>
 </html>
