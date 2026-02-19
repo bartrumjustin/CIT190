@@ -39,6 +39,7 @@
 </footer>
 </body>
 <script>
+    //global const
     const alert = $("#placeholder");
     const menu = $("#menuBtn");
     const WO =  $("#WOitems , #card1");
@@ -47,29 +48,24 @@
     const TechCard = $("#card2 p");
     const Date = $("#Dateitems , #card3");
     const DateCard = $("#card3 p");
+    //const arrays
+    const main = ["Orders", "Workers"]
+    const WOarr = ["Add", "View", "Exit"];
+    const Techarr = ["Admin", "View", "Exit"];
+    const Datearr = ["Clear all WOs", "Clear all Techs", "Exit"];
+    //var arrays that hold strings
+    let WOList = [];
+    let TechList = [];
+    //html arrays holding constructors-ish
+    let WOCardList = [];
+    let TechCardList = [];
+    //global vars
     var noData = true;
     var noWO = true;
     var noTech = true;
     var noDate = true;
     
-        WO.on('click', function () {
-            console.log("Orders menu");
-            noData = false;
-            alert.hide();
-            WOmenu();
-        })
-        Tech.on('click', function(){
-            if(noData){
-                TopAlert(0, "Workers Locked!");
-            }
-        })
-        Date.on('click', function(){
-            if (noData) {
-                TopAlert(0, "Date Locked!");
-            }
-        })
-    
-    
+    $("document").ready(normalOp());
     function TopAlert(a, b){
         console.log("error has occured");
         if(a == 0){
@@ -79,46 +75,103 @@
         }
     }
     function WOmenu(){
-        let arr = ["Add", "Assign", "Complete/Remove"];
+        $(".instruct").show();
+        Date.show();
+        Tech.show();
         var footer = "&#9744; to Create Work Order<br>&#9745; to Assign<br>"+
-        "&#9746; to Complete/Remove Work Order";
-        if(noWO){
-            footer = "&#9744; to Create Work Order<br>(1/10)";
-        }
+        "&#9746; to Exit";
+        
         $(".instruct").html(footer);
-        WOCard.text(arr[0]);
-        TechCard.text(arr[1]);
-        DateCard.text(arr[2]);
+        WOCard.text(WOarr[0]);
+        TechCard.text(WOarr[1]);
+        DateCard.text(WOarr[2]);
         WO.on('click', function () {
+            //send to normal function
             Add(1);
         });
         Tech.on('click', function () {
             if(noWO){
-                TopAlert(0, "Assign Locked! click Add!");
+                TopAlert(0, "Nothing to View! click Add!");
             }
-            AssignActive(1);
+            //send to normal function
         })
         Date.on('click', function () {
-            if (noWO) {
-                TopAlert(0, "Complete/Remove Locked! click Add!");
-            }
-            CompRemove(1);
+            normalOp();
+            //send to normal function
         })
     }
     //this var will keep user from exiting menu until they pick an option.
     function normalOp(){
+        WOCard.html(main[0]);
+        Tech.hide();
+        Date.hide();
+        
     menu.on('click', function(){
+        if(noData){
+            TopAlert(0,"No WO's exsist, can not close menu")
+        }
             $(".menuVis").fadeToggle('slow');
+            alert.hide();
         })
     WO.on('click', function(){
         console.log("Orders menu");
+        alert.hide();
+        WOmenu();
     })
     Tech.on('click', function () {
+        if(noData){
+            TopAlert(0, "No WO's found, Locked!");
+        }
         console.log("Tech menu");
+        alert.hide();
         })
     Date.on('click', function () {
+        if (noData) {
+            TopAlert(0, "No WO's found, Locked!");
+        }
         console.log("Date menu");
+        alert.hide();
         })
     }
+
+    function Add(mod){
+        alert.hide();
+        $("#card1, #card2, #card3").hide();
+        $(".instruct").hide();
+        let a;
+        let b;
+        let c;
+        let formCard = $("#UIcont"); //for form
+        const form = `<article id="card0" class="card">
+        
+    <form id="WOf">
+        <label class = "WOlabel">Work Name:</label>
+        <input autofocus class = "WOinput text" type="text">
+        <input id = "formSubmit" class= "WOinput WOfBtn" type = "button" value="Submit"> 
+        <input class = "WOinput WOfBtn" type= "reset">
+        </form>
+        </article>`;
+        if(mod == 1){
+        formCard.append(`${form}`);
+        $("#formSubmit").on('click', function(){
+            let a = WOList.length;
+            let b = $(".text").val();
+            let c = 100 + WOList.length;
+            WOList[a] = b;
+            const model = `<article id="card${a}" class="card">
+            < p id = "${b}" class= "" >WO: ${b}</p >
+            <p id="${c}" class="">WO#: ${c} </p>
+            </article > `;
+            WOCardList[a] = model;
+            $("#card0").remove();
+            console.log(`${a} + ${b} + ${c} ${WOList} ${WOCardList}`);
+            $("#card1, #card2, card#3").toggle();
+            WOmenu();
+        })
+    }
+        
+    }
+        
+    
 </script>
 </html>
