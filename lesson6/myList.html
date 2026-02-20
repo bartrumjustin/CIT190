@@ -11,26 +11,32 @@
     <title>myList</title>
 </head>
 <body>
-    <p id="placeholder">Click &#9744; to begin</p>
-    <section id="top">
-        <button id="menuBtn" type="button">&#9776;</button>
+    <header id="top">
         <h1 id="title">Power Worker</h1>
-    </section>
+        <p id="placeholder">Click &#9744; to begin</p>
+    </header>
+        
+        
+    
     <section id="mid">    
     <div id="menu" class="menuVis">
-        <button type="button" id="WOitems" class="menuVis">&#9744;</button>
-        <button type="button" id="Techitems" class="menuVis">&#9745;</button>
-        <button type="button" id="Dateitems" class="menuVis">&#9746;</button>
+        <button type="button" id="createIcon" class="menuVis">&#9744;</button>
+        <button id="listIcon" type="button">&#9776;</button>
+        <button type="button" id="completeIcon" class="menuVis">&#9745;</button>
+        <button type="button" id="clearIcon" class="menuVis">&#9746;</button>
     </div>
     <div id="UIcont">
-    <article id="card1" class="card menuVis">
-        <p id="Ord" class="test">ORDERS</p>
+    <article id="createCard" class="card menuVis">
+        <p id="createTxt" class="test">Create</p>
     </article>
-    <article id="card2" class="card menuVis">
-        <p id="Wor" class="test">WORKERS</p>
+    <article id="listCard" class="card menuVis">
+        <p id="listTxt" class="test">List</p>
     </article>
-    <article id="card3" class="card menuVis">
-        <p id="Dat" class="test">DATE</p>
+    <article id="completeCard" class="card menuVis">
+        <p id="completeTxt" class="test">Complete</p>
+    </article>
+    <article id="clearCard" class="card menuVis">
+        <p id="clearTxt" class="test">Clear/Remove</p>
     </article>
     </div>
 </section>
@@ -39,139 +45,245 @@
 </footer>
 </body>
 <script>
-    //global const
-    const alert = $("#placeholder");
-    const menu = $("#menuBtn");
-    const WO =  $("#WOitems , #card1");
-    const WOCard = $("#card1 p");
-    const Tech = $("#Techitems , #card2");
-    const TechCard = $("#card2 p");
-    const Date = $("#Dateitems , #card3");
-    const DateCard = $("#card3 p");
-    //const arrays
-    const main = ["Orders", "Workers"]
-    const WOarr = ["Add", "View", "Exit"];
-    const Techarr = ["Admin", "View", "Exit"];
-    const Datearr = ["Clear all WOs", "Clear all Techs", "Exit"];
-    //var arrays that hold strings
-    let WOList = [];
-    let TechList = [];
-    //html arrays holding constructors-ish
-    let WOCardList = [];
-    let TechCardList = [];
-    //global vars
-    var noData = true;
-    var noWO = true;
-    var noTech = true;
-    var noDate = true;
+    //counter
+    let index = 0;
+    //card cont
+    const $UI = $("#UIcont");
+    //cards
+    let $card1 = $("#createCard");
+    let $card2 = $("#listCard");
+    let $card3 = $("#completeCard");
+    let $card4 = $("#clearCard");
+    //text for cards
+    let $cardTxt1 = $("#createTxt");
+    let $cardTxt2 = $("#listTxt");
+    let $cardTxt3 = $("#completeTxt");
+    let $cardTxt4 = $("#clearTxt");
+    //clickable field of card
+    let $card1click = $("#createCard, #createIcon");
+    let $card2click = $("#listCard, #listIcon");
+    let $card3click = $("#completeCard, #completeIcon");
+    let $card4click = $("#clearCard, #clearIcon");
+    //arrays
+    let todoArr = {};
     
-    $("document").ready(normalOp());
-    function TopAlert(a, b){
-        console.log("error has occured");
-        if(a == 0){
-            alert.show();
-            alert.text(`${b}`);
-            console.log(b);
+    //param construct
+    class Todo{
+        constructor(name, pri, status, dif){
+            this.name = name;
+            this.priority = pri;
+            this.status = status;
+            this.difficulty = dif;
         }
     }
-    function WOmenu(){
-        $(".instruct").show();
-        Date.show();
-        Tech.show();
-        var footer = "&#9744; to Create Work Order<br>&#9745; to Assign<br>"+
-        "&#9746; to Exit";
-        
-        $(".instruct").html(footer);
-        WOCard.text(WOarr[0]);
-        TechCard.text(WOarr[1]);
-        DateCard.text(WOarr[2]);
-        WO.on('click', function () {
-            //send to normal function
-            Add(1);
-        });
-        Tech.on('click', function () {
-            if(noWO){
-                TopAlert(0, "Nothing to View! click Add!");
-            }
-            //send to normal function
-        })
-        Date.on('click', function () {
-            normalOp();
-            //send to normal function
-        })
-    }
-    //this var will keep user from exiting menu until they pick an option.
-    function normalOp(){
-        WOCard.html(main[0]);
-        Tech.hide();
-        Date.hide();
-        
-    menu.on('click', function(){
-        if(noData){
-            TopAlert(0,"No WO's exsist, can not close menu")
-        }
-            $(".menuVis").fadeToggle('slow');
-            alert.hide();
-        })
-    WO.on('click', function(){
-        console.log("Orders menu");
-        alert.hide();
-        WOmenu();
-    })
-    Tech.on('click', function () {
-        if(noData){
-            TopAlert(0, "No WO's found, Locked!");
-        }
-        console.log("Tech menu");
-        alert.hide();
-        })
-    Date.on('click', function () {
-        if (noData) {
-            TopAlert(0, "No WO's found, Locked!");
-        }
-        console.log("Date menu");
-        alert.hide();
-        })
-    }
+    $(document).ready(function(){
+        console.log("initial");
+        $card2click.add($card3click).add($card4click).css("filter", "grayscale(1)");
+        $card1click.on('click', function(){create();
+            $("#placeholder").hide();
+            $(".instruct").hide();
 
-    function Add(mod){
-        alert.hide();
-        $("#card1, #card2, #card3").hide();
-        $(".instruct").hide();
-        let a;
-        let b;
-        let c;
-        let formCard = $("#UIcont"); //for form
-        const form = `<article id="card0" class="card">
+        });
+    });
+    function normal(){
+        $card1.add($card2).add($card3).add($card4).show();
+        console.log("remove css and add click to options 2 to 4");
+        $card2click.add($card3click).add($card4click).css("filter", "grayscale(0)");
         
-    <form id="WOf">
-        <label class = "WOlabel">Work Name:</label>
-        <input autofocus class = "WOinput text" type="text">
-        <input id = "formSubmit" class= "WOinput WOfBtn" type = "button" value="Submit"> 
-        <input class = "WOinput WOfBtn" type= "reset">
-        </form>
-        </article>`;
-        if(mod == 1){
-        formCard.append(`${form}`);
-        $("#formSubmit").on('click', function(){
-            let a = WOList.length;
-            let b = $(".text").val();
-            let c = 100 + WOList.length;
-            WOList[a] = b;
-            const model = `<article id="card${a}" class="card">
-            < p id = "${b}" class= "" >WO: ${b}</p >
-            <p id="${c}" class="">WO#: ${c} </p>
-            </article > `;
-            WOCardList[a] = model;
-            $("#card0").remove();
-            console.log(`${a} + ${b} + ${c} ${WOList} ${WOCardList}`);
-            $("#card1, #card2, card#3").toggle();
-            WOmenu();
-        })
+        $card2click.on('click', list);
+        $card3click.on('click', complete);
+        $card4click.on('click', function(){clear(3);});
     }
-        
-    }
-        
+    function clear(a){
+        if(a===1){
+            console.log("clear list");
+            $("#list").remove();
+            return;
+        }
+        else if(a===2){
+            //clear all
+        }
+        else if(a===3){
+            console.log("list removal");
+             $("#placeholder").html("Click Card to mark Removal, &#9746; To Finish");
+            $("#placeholder").show();
+            list();
+            
+            let checksum = 0;
+            for (const taskName in todoArr) {
+                const Obj = todoArr[taskName];
+                
+                $(`#${Obj.name}`).on('click', function () {
+                    let mark = false;
+                    if ($(`#${Obj.name}`).css("box-shadow") == "rgb(255, 32, 32) 0px 0px 6.4px 0px"
+                    || $(`#${Obj.name}`).css("box-shadow") == "rgb(0, 230, 118) 0px 0px 6.4px 0px") {
+                        $(`#${Obj.name}`).css("box-shadow", "0 0 .4em var(--caution)");
+                        console.log($(`#${Obj.name}`).css("box-shadow"));
+
+                    }
+                    else {
+                        $(`#${Obj.name}`).css("box-shadow", "");
+                        
+                    }
+                })
+            }
+            $card4click.off('click');
+            $card4click.on('click', function () {
+                for (const taskName in todoArr) {
+                    const Obj = todoArr[taskName];
+                    
+                    if ($(`#${Obj.name}`).css("box-shadow") == "rgb(255, 255, 80) 0px 0px 6.4px 0px") {
+                        console.log(Obj.name);
+                        delete todoArr[taskName];
+                        checksum++;
+                        console.log(todoArr);
+                    }
+                }
+                if(checksum==0){
+                   if(confirm("Delete all?")){
+                    todoArr = {};
+                   }
+                   else{
+                    return;
+                   }
+                }
+                $card4click.off('click');
+                $("#placeholder").hide();
+                clear(1);
+
+                $card2click.off('click', list);
+                $card3click.off('click', complete);
+                $card4click.off('click', clear);
+                normal();
+            });
+
+        }
+        }
     
+    function complete(){
+        $("#placeholder").html("Click Card to Complete, &#9745; To Finish");
+        $("#placeholder").show();
+        clear(1);
+        list();
+        for (const taskName in todoArr) {
+            const Obj = todoArr[taskName];
+            $(`#${Obj.name}`).on('click', function(){
+                if($(`#${Obj.name}`).css("box-shadow") == "rgb(255, 32, 32) 0px 0px 6.4px 0px"){
+                $(`#${Obj.name}`).css("box-shadow", "0 0 .4em var(--accentNG)");
+                Obj.status = false;
+            }
+                else{
+                    $(`#${Obj.name}`).css("box-shadow", "rgb(255, 32, 32) 0px 0px 6.4px 0px");
+                    Obj.status = true;
+                }
+            })
+        }
+        $card3click.off('click', complete);
+        $card3click.on('click', function(){
+            for (const taskName in todoArr) {
+                const Obj = todoArr[taskName];
+                console.log($(`#${Obj.name}`).css("box-shadow"));
+                if($(`#${Obj.name}`).css("box-shadow")!= "rgb(255, 32, 32) 0px 0px 6.4px 0px"){
+                    console.log(Obj.name);
+                    
+                }
+        }
+        $card3click.off('click');
+        $("#placeholder").hide();
+        clear(1);
+        
+         $card2click.off('click', list);
+         $card3click.off('click', complete);
+         $card4click.off('click', clear);
+         normal();
+    });
+
+    }
+    function list(){
+        clear(1);
+        let result;
+        $UI.append(`<div id="list"></div>`);
+        $card1.add($card2).add($card3).add($card4).hide();
+        for(const taskName in todoArr){
+            const Obj = todoArr[taskName];
+            
+            switch(Obj.status){
+                case true:
+                    result = "Not completed";
+                    break;
+                case false:
+                    result = "Completed";
+                    break;
+            }
+            
+            $("#list").append(
+                `<article id="${Obj.name}" class="card list">
+                    <p id="${Obj.name}P" class="test">Name: ${Obj.name}<br>
+                    order#: ${Obj.priority}<br>Status: ${result}<br>Difficulty: ${Obj.difficulty}</p>
+                </article>`
+            )
+            if (result == "Completed") {
+                $(`#${Obj.name}`).css("box-shadow", "0 0 .4em var(--accentNG)");
+                console.log($(`#${Obj.name}`).css("box-shadow"));
+            }
+            else {
+                $(`#${Obj.name}`).css("box-shadow", "0 0 .4em var(--alert)");
+            }
+            
+        }
+    }
+    function create(){
+        clear(1);
+        let n, p, s, d = 0;
+        while(n===0||!n || n.trim()===""){
+            n = prompt("Enter Work name:");
+            console.log(n);
+            if(n===null){
+                $card1.add($card2).add($card3).add($card4).show();
+                return;
+            }
+        };
+        p = (index+1);
+        s = true;
+        while(d=== 0||d===null){
+            d = window.prompt("Rate the difficulty: (1=easy to 3 = hard):");
+            if(!parseInt(d)){
+                d=0;
+            }
+            else{
+                switch(parseInt(d)){
+                    case 1:
+                        d = "Easy";
+                        break;
+                    case 2:
+                        d = "Medium";
+                        break;
+                    case 3:
+                        d = "Hard";
+                        break;
+                    default:
+                        d=0;
+                        break;
+                }
+            }
+        }
+        
+        const object = new Todo(n,p,s,d);
+        todoArr[n] = object;
+        
+        console.log(todoArr);
+        if(index==0){
+        index++;
+        normal();
+        console.log("normal fired");
+        }
+        else{
+            index++;
+            console.log("returned");
+             $card1.add($card2).add($card3).add($card4).show();
+            return;
+        }
+        
+    }
 </script>
 </html>

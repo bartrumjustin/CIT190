@@ -8,6 +8,8 @@
     --accentBBAct:#1010ff;
     --caution:#ffff50;
     --alert:#ff2020;
+    --complete: 
+    linear-gradient(to bottom, #101010, rgb(0, 230, 118));
 }
 @font-face {
     font-family: ibm;
@@ -23,39 +25,33 @@ body{
     overflow: hidden;
 }
 body>p{
+    
+}
+#top{
+    display: flex;
+    flex-direction: column-reverse;
+    color: var(--text);
+    
+}
+#top>p{
+    letter-spacing: .1em;
+    padding: .15em 0;
+    font-weight: bold;
     text-align: center;
     margin: 0;
-    position: fixed;
-    top:0;
     min-height: 1.2em;
-    width: 100%;
+    width: 100%;        
     background-color: var(--caution);
     color: var(--bg);
     z-index: 1;
 }
-#top{
-    display: grid;
-    grid-template-columns: 1fr 7fr;
-    color: var(--text);
-}
-h1{
+#top>h1{
+    color: var(--bg);
+    margin: 0;
+    background-color: var(--accentBB);
     text-align: center;
     font-size: 2em;
-    align-self: center;
 }
-#menuBtn{
-    min-height: 80px;
-    min-width: 50px;
-    border-radius:0 0 0 0;
-    border: none;
-    outline: none;
-    background-color: var(--accentBB);
-    padding: ;
-    font-size: 2em;
-    color: var(--bg);
-    cursor: pointer;
-}
-
 
 #menuBtn:active, 
 #menu>button:active{
@@ -69,7 +65,6 @@ h1{
     background-color: var(--accentBB);
 }
 #menu>button{
-    
     cursor: pointer;
     border: none;
     outline: none;
@@ -81,7 +76,6 @@ h1{
 #UIcont{
     width: 100%;
     display: flex;
-    
     flex-direction: column;
     align-items: center;
     color: var(--text);
@@ -95,7 +89,7 @@ h1{
     height: 100%;
     min-width: 100%;
 }
-#UIcont>article{
+#UIcont article{
     border-radius: 10px;
     margin: .35em;
     background-color: var(--cards);
@@ -105,6 +99,13 @@ h1{
 #UIcont p {
     font-size: 1em;
     padding: 0 .5em;
+}
+#list{
+    min-width: 100%;
+}
+.list{
+    box-shadow: 0 0 .4em var(--alert);
+    min-width: 80%;
 }
 footer{
     
@@ -124,37 +125,12 @@ footer>p{
     margin: 0;
     
 }
-/*Added functions*/
-#card0{
-    min-height: 50%;
-}
-#card0>#WOf{
-    height: 100%;
-    display: grid;
-    grid-template-rows: 10% 10% 20% 20%;
-    align-content: space-evenly;
-}
-.text{
-    font-size: 1.2em;
-}
-.WOlabel{
-    text-align: center;
-}
-.WOfBtn{
-    
-    font-size: 1.5em;
-    font-weight: bold;
-    color: var(--bg);
-    background-color: var(--accentNG);
-}
-.WOfBtn:active{
-    background-color: var(--accentNGAct);
-}
+
 
 @media screen and (min-width: 800px) {
 
 #menuBtn:hover,
-#menu>button:hover, 
+#menu>button:hover 
 {
     background-color: var(--accentBBAct);
 }
