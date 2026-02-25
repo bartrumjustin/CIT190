@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<organization>
+<dept>
+<id>100</id>
+<name>Administration</name>
+<empcount>10</empcount>
+<assets>12 cubicle sets, 2 printers, 3 shredders</assets>
+</dept>
+<dept>
+<id>200</id>
+<name>Payroll</name>
+<empcount>4</empcount>
+<assets>5 cubicle sets, 1 printer, 1 shredder</assets>
+</dept>
+<dept>
+<id>300</id>
+<name>Production</name>
+<empcount>42</empcount>
+<assets>30 complete field assets, 3 partial field assets, 9 shop assets</assets>
+</dept>
+<dept>
+<id>400</id>
+<name>Supply</name>
+<empcount>4</empcount>
+<assets>2 cubicle sets, 1 ship/recieve station, 3 handling equipment, 1 vehicle asset</assets>
+</dept>
+</organization>
