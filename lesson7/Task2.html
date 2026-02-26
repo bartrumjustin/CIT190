@@ -4,6 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AJAX-XML</title>
+    <style>
+        :root {
+  --bg-cream: #FFFDD0;
+  --text-navy: #0D2B45;
+  --accent-sky: #0066CC;   
+  --accent-sand: #C29B61;  
+  --surface-sand-light: #F4E4BC;
+}
+        body{
+            height: 100dvh;
+            width: 100dvw;
+            background-color: var(--bg-cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #load{
+            background-color: var(--surface-sand-light);
+            color: var(--accent-sky);
+        }
+        #card{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+        }
+        #card>div{
+            background-color: var(--surface-sand-light);
+            color: var(--text-navy);
+            margin: .5em;
+            padding: .5em;
+        }
+        h2{
+            color:var(--text-navy);
+        }
+        ul{
+            background-color: var(--accent-sand);
+        }
+        li{
+            padding: .5em;
+        }
+    </style>
 </head>
 <body>
     <h1 id="cont">Organizational inventory</h1>
@@ -11,6 +53,35 @@
     <div id="card"></div>
     <script>
         const btn = document.getElementById("load");
+        let txt = "";
+        btn.addEventListener('click', function(){
+            let http = new XMLHttpRequest();
+            http.onreadystatechange= function(){
+                if (http.readyState==4 && http.status==200){
+                    xmlDoc = http.responseXML;
+                    let a = xmlDoc.getElementsByTagName("name");
+                    for(let i = 0; i<a.length; i++){
+                        let Name = a[i].textContent;
+                        let Id = xmlDoc.getElementsByTagName("id")[i].textContent;
+                        let Employees = xmlDoc.getElementsByTagName("empcount")[i].textContent;
+                        let Assets = xmlDoc.getElementsByTagName("assets")[i].textContent;
+                        txt += `<div id='a${i}'>
+                        <h2>${Name}</h2>
+                        <ul id='b${i}'>
+                            <li class='id'>Department Number: ${Id}</li>
+                            <li class='employees'># of Employees: ${Employees}</li>
+                            <li class='assets'>Current assets: ${Assets}</li>
+                            </ul>
+                            </div>`;
+                            
+                    }
+                    document.getElementById("card").innerHTML= txt;
+                    btn.style.visibility = 'hidden';
+                }
+            }
+            http.open("GET", "Task1.xml", true);
+            http.send();
+        })
     </script>
 </body>
 </html>
