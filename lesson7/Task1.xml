@@ -4,24 +4,41 @@
 <id>100</id>
 <name>Administration</name>
 <empcount>10</empcount>
-<assets>12 cubicle sets, 2 printers, 3 shredders</assets>
+<assets><![CDATA[
+12 cubicle sets<br/>
+2 printers<br/>
+3 shredders]]>
+</assets>
 </dept>
 <dept>
 <id>200</id>
 <name>Payroll</name>
 <empcount>4</empcount>
-<assets>5 cubicle sets, 1 printer, 1 shredder</assets>
+<assets><![CDATA[
+5 cubicle sets<br/>
+1 printer<br/>
+1 shredder]]>
+</assets>
 </dept>
 <dept>
 <id>300</id>
 <name>Production</name>
 <empcount>42</empcount>
-<assets>30 complete field assets, 3 partial field assets, 9 shop assets</assets>
+<assets><![CDATA[
+30 complete field assets<br/>
+3 partial field assets<br/>
+9 shop assets]]>
+</assets>
 </dept>
 <dept>
 <id>400</id>
 <name>Supply</name>
 <empcount>4</empcount>
-<assets>2 cubicle sets, 1 ship/recieve station, 3 handling equipment, 1 vehicle asset</assets>
+<assets><![CDATA[
+2 cubicle sets<br/>
+1 ship/recieve station<br/>
+3 handling equipment<br/>
+1 vehicle asset]]>
+</assets>
 </dept>
 </organization>

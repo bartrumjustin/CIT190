@@ -13,6 +13,7 @@
   --surface-sand-light: #F4E4BC;
 }
         body{
+            margin: 0;
             height: 100dvh;
             width: 100dvw;
             background-color: var(--bg-cream);
@@ -20,14 +21,22 @@
             flex-direction: column;
             align-items: center;
         }
+        h1{
+            padding-top: .25em;
+        }
         #load{
             background-color: var(--surface-sand-light);
             color: var(--accent-sky);
+            min-width: 100px;
+            min-height: 60px;
+            padding: .5em;
+            font-weight: bold;
         }
         #card{
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+            justify-content: center;
 
         }
         #card>div{
@@ -35,15 +44,23 @@
             color: var(--text-navy);
             margin: .5em;
             padding: .5em;
+            border-radius: 10px;
+            box-shadow: 2px 3px 4px var(--text-navy);
+            max-width: 80%;
+            min-width: 30%;
         }
         h2{
             color:var(--text-navy);
         }
         ul{
+            padding:0;
             background-color: var(--accent-sand);
+            border-radius: 10px;
         }
         li{
-            padding: .5em;
+            font-weight: bolder;
+            list-style: none;
+            padding: .75em;
         }
     </style>
 </head>
@@ -70,7 +87,7 @@
                         <ul id='b${i}'>
                             <li class='id'>Department Number: ${Id}</li>
                             <li class='employees'># of Employees: ${Employees}</li>
-                            <li class='assets'>Current assets: ${Assets}</li>
+                            <li class='assets'>Current assets:<br>${Assets}</li>
                             </ul>
                             </div>`;
                             
