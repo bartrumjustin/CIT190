@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX-JSON</title>
+    <style>
+        :root {
+            --bg-cream: #FFFDD0;
+            --text-navy: #0D2B45;
+            --accent-sky: #0066CC;
+            --accent-sand: #C29B61;
+            --surface-sand-light: #F4E4BC;
+        }
+
+        body {
+            margin: 0;
+            height: 100dvh;
+            width: 100dvw;
+            background-color: var(--bg-cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            padding-top: .25em;
+        }
+
+        #load {
+            background-color: var(--surface-sand-light);
+            color: var(--accent-sky);
+            min-width: 100px;
+            min-height: 60px;
+            padding: .5em;
+            font-weight: bolder;
+        }
+
+        #card {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+
+        }
+
+        #card>div {
+            background-color: var(--surface-sand-light);
+            color: var(--text-navy);
+            margin: .5em;
+            padding: .5em;
+            border-radius: 10px;
+            box-shadow: 2px 3px 4px var(--text-navy);
+            max-width: 80%;
+            min-width: 30%;
+        }
+
+        h2 {
+            color: var(--text-navy);
+        }
+
+        ul {
+            padding: 0;
+            background-color: var(--accent-sand);
+            border-radius: 10px;
+        }
+
+        li {
+            font-weight: bolder;
+            list-style: none;
+            padding: .75em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="cont">Organizational inventory (JSON)</h1>
+    <button id="load">Load current cards</button>
+    <div id="card"></div>
+    <script>
+        const btn = document.getElementById("load");
+        let txt = "";
+        btn.addEventListener('click', function () {
+            let xjson = new XMLHttpRequest();
+            xjson.onload = function () {
+                if (xjson.readyState == 4 && xjson.status == 200) {
+                    jsonObj = JSON.parse(xjson.responseText);
+                    let a = jsonObj.dept;
+                    for (let i = 0; i < a.length; i++) {
+                        let Name = a[i].name;
+                        let Id = a[i].id;
+                        let Employees = a[i].empcount;
+                        let Assets = a[i].assets;
+                        txt += `<div id='a${i}'>
+                        <h2>${Name}</h2>
+                        <ul id='b${i}'>
+                            <li class='id'>Department Number: ${Id}</li>
+                            <li class='employees'># of Employees: ${Employees}</li>
+                            <li class='assets'>Current assets:<br>${Assets}</li>
+                            </ul>
+                            </div>`;
+
+                    }
+                    document.getElementById("card").innerHTML = txt;
+                    btn.style.visibility = 'hidden';
+                }
+            }
+            xjson.open("GET", "Task3.json", true);
+            xjson.send();
+        })
+    </script>
+</body>
+
+</html>
