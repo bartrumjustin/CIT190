@@ -1,7 +1,7 @@
 ﻿
 $(function () {
 	getFocus();
-});
+
 $("#reset").on("click", function ()
 {
 	getFocus();
@@ -89,4 +89,4 @@ $("#calc").on("click", function () {
 
 btn_reset.addEventListener("click", getFocus);*/
 
-
+});

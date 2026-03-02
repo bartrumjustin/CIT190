@@ -45,6 +45,7 @@
 </footer>
 </body>
 <script>
+    $(document).ready(function () {
     //counter
     let index = 0;
     //card cont
@@ -76,7 +77,7 @@
             this.difficulty = dif;
         }
     }
-    $(document).ready(function(){
+    
         console.log("initial");
         $card2click.add($card3click).add($card4click).css("filter", "grayscale(1)");
         $card1click.on('click', function(){create();
@@ -84,7 +85,7 @@
             $(".instruct").hide();
 
         });
-    });
+    
     function normal(){
         $card1.add($card2).add($card3).add($card4).show();
         console.log("remove css and add click to options 2 to 4");
@@ -285,5 +286,6 @@
         }
         
     }
+    });
 </script>
 </html>
