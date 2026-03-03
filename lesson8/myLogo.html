@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo</title>
+</head>
+<body>
+    <canvas id="myLogo" style="width: 300" height="300">If you are seeing this, you do not support HTML5 Canvas</canvas>
+    <script>
+        var c = document.getElementById('myLogo');
+        var drw = c.getContext('2d');
+        //rectangle
+        drw.fillStyle='blue';
+        drw.fillRect(0,0,300,300);
+        drw.fill();
+        //cirlce
+        drw.lineWidth = 3;
+        drw.strokeStyle="red";
+        drw.arc(150,150,100,0,Math.PI*2,true);
+        drw.stroke();
+        //triangle
+        drw.fillStyle = 'red';
+        drw.beginPath();
+        drw.moveTo(125,150);
+        drw.lineTo(150,175);
+        drw.lineTo(175,150);
+        drw.fill();
+        //fille or stroked text
+        drw.fillStyle="black";
+        drw.font=" 75px Verdana";
+        drw.fillText("myLogo", 2, 125);
+        
+    </script>
+</body>
+</html>
