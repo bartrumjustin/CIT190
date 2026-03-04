@@ -23,17 +23,18 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function(){
-        console.log("reading local storage");
-        const f = localStorage.getItem('firstName');
-        const l = localStorage.getItem('lastName');
-        const N1 = localStorage.getItem('Number1');
-        const N2 = localStorage.getItem('Number2');
+
+        console.log("reading session storage");
+        const f = sessionStorage.getItem('firstName');
+        const l = sessionStorage.getItem('lastName');
+        const N1 = sessionStorage.getItem('Number1');
+        const N2 = sessionStorage.getItem('Number2');
         console.log("read, applying to DOM");
         document.getElementById('f').textContent = f;
         document.getElementById('l').textContent = l;
         document.getElementById('n1').textContent = N1; 
         document.getElementById('n2').textContent = N2;
-        localStorage.clear();
+        sessionStorage.clear();
     })
 </script>
 </html>

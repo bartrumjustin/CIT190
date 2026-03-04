@@ -3,10 +3,12 @@ const f = document.getElementById('fName');
 const l = document.getElementById('lName');
 const N1 = document.getElementById('Num1');
 const N2 = document.getElementById('Num2');
-
+localStorage.clear();
+console.log("cleared previous data from local");
 sub.addEventListener('click', function () {
+    
     console.log("Submit clicked")
-    //e.preventDefault();
+    
     localStorage.firstName = f.value;
     localStorage.lastName = l.value;
     localStorage.Number1 = N1.value;
