@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Game</title>
+</head>
+<body id="gameScreen">
+    <script>
+        window.onload = function(){
+            startGame.start();
+        }
+
+        
+        var startGame = {
+        gameScreen : document.createElement("canvas"),
+        start : function(){
+            document.body.style.margin = "0";
+            document.body.style.padding = "0";
+            document.body.style.overflow = "hidden";
+            this.context = this.gameScreen.getContext("2d");
+            this.gameScreen.width = window.innerWidth;
+            this.gameScreen.height = window.innerHeight;
+            this.gameScreen.style.display = "block";
+            this.context.fillStyle = "#181425";
+            this.context.fillRect(0, 0, this.gameScreen.width, this.gameScreen.height);
+            document.body.insertBefore(this.gameScreen, document.body.childNodes[0]);
+        }
+    }
+    </script>
+</body>
+</html>
