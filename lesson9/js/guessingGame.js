@@ -10,19 +10,42 @@
     });
 
     document.getElementById("checkGuess").addEventListener("click", function() {
-        	var guess = new Number(document.getElementById("guess").value);
-      		if (computer==guess){
-      			document.getElementById("comments").value="You guessed correctly - congratulations! It only took " + tries + " tries!";
-      		} else if (computer<guess) {
-        		document.getElementById("comments").value="Your guess is too high, try again!";
-        		tries++;
-        		document.getElementById("tries").value=tries;
-        	}
-        	else {
-        		document.getElementById("comments").value="Your guess is too low, try again!";
-        		tries++;
-           		document.getElementById("tries").value=tries;
-       		}
+		var guess = new Number(document.getElementById("guess").value);
+		const resp = document.getElementById("comments");
+		const tryCount = document.getElementById("tries");
+		try {
+			//Using if (gatekeeper) else as bad data routing for data validation
+			if (guess > 1 && guess < 100) {
+				tries++;
+				if (computer == guess) {
+					resp.value = "You guessed correctly - congratulations! It only took " + tries + " tries!";
+				}
+				else if (computer < guess) {
+					resp.value = "Your guess is too high, try again!";
+					tries++;
+					tryCount.value = tries;
+				}
+				else {
+					resp.value = "Your guess is too low, try again!";
+					tries++;
+					tryCount.value = tries;
+				}
+				//document.getElementById("guess").value = "";
+			}
+			else {
+				//document.getElementById("guess").value = "";
+				tries++;
+				tryCount.value = tries;
+				console.error("The data validation produced an error!")
+				throw ("Your guess was not a number from 1 to 100");
+			}
+			
+		}
+		catch (err) {
+			console.info(err + " @ " + console.count("iteration = "));
+			resp.value = err;
+		}
+		document.getElementById("guess").value = "";
         });
      
 
