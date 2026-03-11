@@ -62,7 +62,8 @@
 
                 //hits the bottom and sets them back to the top
                 if (rock.y > window.innerHeight) {
-                    rock.y = -1* Math.random() * window.innerHeight;
+                    rock.y = Math.random() * -20;
+                    console.log(rock.y);
                     rock.x = Math.random() * window.innerWidth;
                 }
 
