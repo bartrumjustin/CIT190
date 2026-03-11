@@ -13,48 +13,105 @@
         let shipSpeed = 3;
         let asteroidSpeed = 3;
         let gameAsteroid = [];
+        let factor = 0;
+        
+        //on load 
         window.onload = function () {
             startGame.start();
-            for (var i = 0; i < 12; i++) {
+            console.log(`ideal asteroid count ${Math.round((window.innerWidth-80)/35)} `)
+            for (var i = 0; i < Math.round((window.innerWidth - 80) / 35); i++) {
                 var x = Math.random() * window.innerWidth;
                 var y = -5* Math.random() * 200;
-                var size = 16; // Size between 10 and 30
+                var size = 16; 
 
                 gameAsteroid.push(new Asteroid(size, x, y));
             }
             //gameAsteroid = new Asteroid(16, (window.innerWidth / 2), (window.innerHeight / 2));
-            gameShip = new Ship(window.innerWidth / 2, ((window.innerHeight / 6) * 5));
+            gameShip = new Ship(window.innerWidth / 2, ((window.innerHeight / 6) * 5)); //this is ship placement on game field
+            hitBox = new HitBox(); //create hit box object;
             gameAsteroid.forEach(function (rock) {
                 rock.make();
             });
         }
+        function HeartBeat(){
+            factor++;
+            console.log(factor);
+            asteroidSpeed += .1;
+        }
         //updates every 30 fps roughly
         function frames() {
+            
+            
+            
+            
             //controls for desktop
-            if (startGame.key && startGame.key == 70){gameShip.x += shipSpeed*-1;}
-            if (startGame.key && startGame.key == 74){gameShip.x += shipSpeed;}
+            if (startGame.key && startGame.key == 70)
+            {gameShip.x += shipSpeed*-1;}
+            if (startGame.key && startGame.key == 74)
+            {gameShip.x += shipSpeed;}
+            //clear the old screen
             startGame.clear();
+            //create ship
+            gameShip.make();
+            //populate the new asteroid positions
             gameAsteroid.forEach(function (rock) {
                 
-                rock.y += 2; // Move them down
+                
+                rock.y += asteroidSpeed; // Move them down
+                
 
-                // Wrap around: if they go off-screen left, put them back on the right
+                //hits the bottom and sets them back to the top
                 if (rock.y > window.innerHeight) {
-                    rock.y = 0;
+                    rock.y = -1* Math.random() * window.innerHeight;
+                    rock.x = Math.random() * window.innerWidth;
                 }
 
-                rock.make(); // Draw the current asteroid
+                rock.make(); // Draw the current asteroid with the above changes
+                hitBox.make(rock.x, rock.y, rock.size * 2, rock.size * 2);
+                checkCollisions(rock.x, rock.y, rock.size, gameShip.x, gameShip.y);
+                
             });
-            gameShip.make();
-            gameAsteroid.make();
+            //checkCollisions();
+            
+            
+            //debug collisions
+            hitBox.make((gameShip.x), (gameShip.y), 40, 40);
+             //invoke the hitbox
+            //gameAsteroid.make();
             
 
         }
+        //collision check
+        function checkCollisions(rx,ry,rsize,sx,sy) {
+            
+            //rock hitbox area
+            let rX = Math.round(rx);
+            let rX2 = Math.round(rx + rsize*2);
+            let rY = Math.round(ry + rsize*2);
+            let rY2 = Math.round(ry + rsize * 2);
+            //ship hitbox area
+            let sX = Math.round(sx);
+            let sX2 = Math.round(sx+ 35);
+            let sY = Math.round(sy);
+            let sY2 = Math.round(sy + 40);
+               //if statement to check x area
+               
+               if(rY >= sY && rY<= sY2){
+                
+                if(rX2 >= sX && rX <= sX2){
+                    console.log(rX, rX2, sX, sX2);
+                }
+               }
+               
+                
+            }
+        
+
         function Ship(x, y) {
             this.x = x;
             this.y = y;
-            this.width = 40;
-            this.height = 40;
+            this.width = 40; //defines the ships width
+            this.height = 40; //defines the ships height
 
             //new image object
             this.image = new Image();
@@ -70,6 +127,22 @@
                     this.height);
             };
 
+        }
+        function HitBox(){
+            
+            //make function
+            this.make = function(x, y, width, height){
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+            var ctx = startGame.context;
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+            ctx.fillRect((this.x - (this.width / 2)), (this.y - (this.height / 2)), this.width, this.height );
+            
+            ctx.closePath
+            }
         }
 
         //specifies the asteroid and 
@@ -96,9 +169,11 @@
         var startGame = {
             gameScreen: document.createElement("canvas"),
             start: function () {
+                //gets rid of forced margins
                 document.body.style.margin = "0";
                 document.body.style.padding = "0";
                 document.body.style.overflow = "hidden";
+                //start of canvas and define the gamescreen
                 this.context = this.gameScreen.getContext("2d");
                 this.gameScreen.width = window.innerWidth;
                 this.gameScreen.height = window.innerHeight;
@@ -106,7 +181,10 @@
                 this.context.fillStyle = "#181425";
                 this.context.fillRect(0, 0, this.gameScreen.width, this.gameScreen.height);
                 document.body.insertBefore(this.gameScreen, document.body.childNodes[0]);
+                //set frame refresh
                 this.interval = setInterval(frames, 33);
+                this.interval = setInterval(HeartBeat, 1000);
+                //enable controls
                 window.addEventListener('keydown', function (e) {
                     startGame.key = e.keyCode;
                 })
@@ -115,6 +193,7 @@
                 })
             },
             clear: function () {
+                //clears the screen for the next update
                 this.context.fillStyle = "#181425";
                 this.context.clearRect(0, 0, this.gameScreen.width, this.gameScreen.height);
                 this.context.fillRect(0, 0, this.gameScreen.width, this.gameScreen.height);
