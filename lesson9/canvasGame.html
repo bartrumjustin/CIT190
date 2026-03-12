@@ -10,10 +10,56 @@
 <body id="gameScreen">
     <script>
         //var gameAsteroid;
-        let shipSpeed = 3;
+        let shipSpeed = 5;
         let asteroidSpeed = 3;
         let gameAsteroid = [];
         let factor = 0;
+        let frameID;
+        let HeartBeatID;
+        var startGame = {
+            //gameScreen is the whole screen
+            //.start begins
+            //.clear will remove the content within for advancing frames
+                gameScreen: document.createElement("canvas"),
+                start: function () {
+                    //gets rid of forced margins
+                    document.body.style.margin = "0";
+                    document.body.style.padding = "0";
+                    document.body.style.overflow = "hidden";
+                    //start of canvas and define the gamescreen
+                    this.context = this.gameScreen.getContext("2d");
+                    this.gameScreen.width = window.innerWidth;
+                    this.gameScreen.height = window.innerHeight;
+                    this.gameScreen.style.display = "block";
+                    this.context.fillStyle = "#181425";
+                    this.context.fillRect(0, 0, this.gameScreen.width, this.gameScreen.height);
+                    document.body.insertBefore(this.gameScreen, document.body.childNodes[0]);
+                    //display instructions
+
+                    //set frame refresh and heartbeat
+                    frameID = setInterval(frames, 33);
+                    HeartBeatID = setInterval(HeartBeat, 1000);
+                    //enable controls
+                    window.addEventListener('keydown', function (e) {
+                        startGame.key = e.keyCode;
+                    })
+                    window.addEventListener('keyup', function (e) {
+                        startGame.key = false;
+                    })
+                },
+                clear: function () {
+                    //clears the screen for the next update
+                    this.context.fillStyle = "#181425";
+                    this.context.clearRect(0, 0, this.gameScreen.width, this.gameScreen.height);
+                    this.context.fillRect(0, 0, this.gameScreen.width, this.gameScreen.height);
+                },
+                stop: function () {
+                    clearInterval(frameID);
+                    clearInterval(HeartBeatID);
+                    
+                }
+            }
+
         
         //on load 
         window.onload = function () {
@@ -35,15 +81,12 @@
         }
         function HeartBeat(){
             factor++;
+            
             console.log(factor);
             asteroidSpeed += .1;
         }
         //updates every 30 fps roughly
         function frames() {
-            
-            
-            
-            
             //controls for desktop
             if (startGame.key && startGame.key == 70)
             {gameShip.x += shipSpeed*-1;}
@@ -68,15 +111,19 @@
                 }
 
                 rock.make(); // Draw the current asteroid with the above changes
-                hitBox.make(rock.x, rock.y, rock.size * 2, rock.size * 2);
+                //hitBox.make(rock.x, rock.y, rock.size * 2, rock.size * 2);
                 checkCollisions(rock.x, rock.y, rock.size, gameShip.x, gameShip.y);
+                var ctx = startGame.context;
+                ctx.font = "2em Arial";
+                ctx.fillStyle = "#F0DE5F";
+                ctx.fillText("Use [ f ] for left and [ j ] for right", window.innerWidth / 3, window.innerHeight/8);
                 
             });
             //checkCollisions();
             
             
             //debug collisions
-            hitBox.make((gameShip.x), (gameShip.y), 40, 40);
+           // hitBox.make((gameShip.x), (gameShip.y), 40, 40);
              //invoke the hitbox
             //gameAsteroid.make();
             
@@ -100,7 +147,7 @@
                if(rY >= sY && rY<= sY2){
                 
                 if(rX2 >= sX && rX <= sX2){
-                    console.log(rX, rX2, sX, sX2);
+                    startGame.stop();
                 }
                }
                
@@ -164,44 +211,10 @@
                 ctx.closePath();
             }
         }
-        //gameScreen is the whole screen
-        //.start begins
-        //.clear will remove the content within for advancing frames
-        var startGame = {
-            gameScreen: document.createElement("canvas"),
-            start: function () {
-                //gets rid of forced margins
-                document.body.style.margin = "0";
-                document.body.style.padding = "0";
-                document.body.style.overflow = "hidden";
-                //start of canvas and define the gamescreen
-                this.context = this.gameScreen.getContext("2d");
-                this.gameScreen.width = window.innerWidth;
-                this.gameScreen.height = window.innerHeight;
-                this.gameScreen.style.display = "block";
-                this.context.fillStyle = "#181425";
-                this.context.fillRect(0, 0, this.gameScreen.width, this.gameScreen.height);
-                document.body.insertBefore(this.gameScreen, document.body.childNodes[0]);
-                //set frame refresh
-                this.interval = setInterval(frames, 33);
-                this.interval = setInterval(HeartBeat, 1000);
-                //enable controls
-                window.addEventListener('keydown', function (e) {
-                    startGame.key = e.keyCode;
-                })
-                window.addEventListener('keyup', function (e) {
-                    startGame.key = false;
-                })
-            },
-            clear: function () {
-                //clears the screen for the next update
-                this.context.fillStyle = "#181425";
-                this.context.clearRect(0, 0, this.gameScreen.width, this.gameScreen.height);
-                this.context.fillRect(0, 0, this.gameScreen.width, this.gameScreen.height);
-            }
-        }
-
+        
+        
     </script>
+    <p>Use Keys [f] for left and [j] for right</p>
 </body>
 
 </html>
