@@ -79,6 +79,7 @@ h1{
     background-color: var(--cards);
     border-radius: 10px;
 }
+
 h3{
     font-size: 1em;
     letter-spacing: .25em;
@@ -98,13 +99,26 @@ a :active{
     text-shadow: 0 0 2.5px var(--text);
 }
 img{
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
 }
 
 @media screen and (min-width: 800px) {
+    body{
+        justify-content: center;
+    }
 #menu{
+    height: 75%;
+    width: 95%;
     flex-direction: row;
+    justify-items: center;
+    
+}
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
 }
     a :hover {
 
