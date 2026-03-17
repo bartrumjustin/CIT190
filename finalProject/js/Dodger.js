@@ -30,13 +30,7 @@ var startGame = {
         //set frame refresh and heartbeat
         frameID = setInterval(frames, 33);
         HeartBeatID = setInterval(HeartBeat, 1000);
-        //enable controls
-        window.addEventListener('keydown', function (e) {
-            startGame.key = e.keyCode;
-        })
-        window.addEventListener('keyup', function (e) {
-            startGame.key = false;
-        })
+        
     },
     clear: function () {
         //clears the screen for the next update
@@ -54,9 +48,40 @@ var startGame = {
 
 //on load 
 window.onload = function () {
-    alert("With desktop use:\n" +
-        "[ F ] for left\n" +
-        "[ J ] for right");
+    if (window.innerWidth <= 800) {
+        alert("touch/hold the side you want to move")
+        console.log("User is mobile, use touch functions");
+        window.addEventListener('touchend', (e) => {
+            
+                startGame.key = false;
+            
+        });
+        window.addEventListener('touchstart', (e) => {
+            if (e.cancelable) e.preventDefault(); //dont zoom or alt click
+            const touchX = e.touches[0].clientX; // Get horizontal tap position
+            const screenCenter = window.innerWidth / 2;
+            if (touchX < screenCenter) {
+                startGame.key = "f";
+            }
+            else {
+                startGame.key = "j";
+            }
+        });
+    }
+        
+    else{
+            //enable controls for desktop
+            window.addEventListener('keydown', function (e) {
+                startGame.key = e.key;
+                console.log(startGame.key);
+            })
+            window.addEventListener('keyup', function (e) {
+                startGame.key = false;
+            })
+            alert("With desktop use:\n" +
+                "[ F ] for left\n" +
+                "[ J ] for right");
+        }
     console.log(`ideal asteroid count ${Math.round((window.innerWidth - 80) / 35)} `);
 
     for (var i = 0; i < Math.round((window.innerWidth / 8)); i++) {
@@ -95,18 +120,12 @@ function frames() {
 
 
     //controls for desktop
-    if (startGame.key && startGame.key == 70) { gameShip.x += shipSpeed * -1; }
-    if (startGame.key && startGame.key == 74) { gameShip.x += shipSpeed; }
+    if (startGame.key && startGame.key == "f") { gameShip.x += shipSpeed * -1; }
+    if (startGame.key && startGame.key == "j") { gameShip.x += shipSpeed; }
     //clear the old screen
     startGame.clear();
     //create ship
-    gameShip.make();
-    if (gameShip.x >= window.innerWidth) {
-        gameShip.x = window.innerWidth;
-    }
-    else if (gameShip.x <= 0) {
-        gameShip.x = 0;
-    }
+    
     //populate stars
     stars.forEach(function (point) {
         point.y += asteroidSpeed / 6;
@@ -138,7 +157,13 @@ function frames() {
 
     });
     //checkCollisions();
-
+    gameShip.make();
+    if (gameShip.x >= window.innerWidth) {
+        gameShip.x = window.innerWidth;
+    }
+    else if (gameShip.x <= 0) {
+        gameShip.x = 0;
+    }
 
     //debug collisions
     // hitBox.make((gameShip.x), (gameShip.y), 40, 40);
