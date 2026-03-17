@@ -48,6 +48,13 @@ var startGame = {
 
 //on load 
 window.onload = function () {
+    this.alert("Welcome to Dodger\n\n"+
+        "You have found yourself venturing into a pallisade of asteroids, Dodge them for as long as you can!\n" +
+        "Above the incoming asteroids is your score, as you gain more points the asteroids will move faster towards you\n"
+        + "the next alert will display the functions necessary to play\n\n" +
+        "This game, art and likeness are original to me, Justin Bartrum, any similiarities to other games is coincental\n"
+        + "If you wish to copy or fork this work, please give proper referrence to this game, Dodger, and the creator, Justin Bartrum\n\n" +
+"If you like this game or wish to offer your thoughts on it, you may reach out to me @ BartrumJustin@gmail.com");
     if (window.innerWidth <= 800) {
         alert("touch/hold the side you want to move")
         console.log("User is mobile, use touch functions");
