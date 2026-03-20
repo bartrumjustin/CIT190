@@ -1,0 +1,36 @@
+body{
+    height: 100dvh;
+    width: 100dvw;
+    margin: 0;
+    padding: 0;
+}
+header{
+    border: .5em solid black;
+    padding: .5em 0;
+}
+h1{
+    justify-self: center;
+}
+#tab-cont{
+    padding: 0 1em;
+    display: flex;
+    flex-direction: column;
+}
+.tabLink{
+    min-height: 55px;
+    min-width: 80%;
+    margin: .5em 0;
+}
+article{
+    display: block;
+    position: relative;
+}
+.tabContext{
+    padding: 0 .75em ;
+    position: absolute;
+    display: none;
+}
+.active{
+    background-color: black;
+    color: white;
+}
