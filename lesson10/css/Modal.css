@@ -1,0 +1,45 @@
+body{
+    height: 100dvh;
+    width: 100dvw;
+    margin: 0;
+    padding: 0;
+}
+header{
+    border: .5em solid black;
+    padding: .5em 0;
+}
+h1{
+    justify-self: center;
+}
+#tab-cont{
+    padding: 0 1em;
+    display: flex;
+    flex-direction: column;
+}
+.tabLink{
+    min-height: 55px;
+    min-width: 80%;
+    margin: .5em 0;
+}
+article{
+    display: block;
+    position: relative;
+}
+.tabContext{
+    width: 90%;
+    height: 100%;
+    padding: 0 .75em ;
+    position: absolute;
+    display: none;
+}
+span{
+    width: 100%;
+    font-weight: bolder;
+    padding: .5em .5em;
+    font-size: 1.5em;
+    color: red;
+    
+}
+.exit{
+    cursor: pointer;
+}

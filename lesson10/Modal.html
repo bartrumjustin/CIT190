@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/Modal.css">
+    <title>Modal</title>
+</head>
+<body>
+    <Header>
+        <h1 id="title">Dash Board</h1>
+        <nav id="tab-cont">
+            
+                <button id="mBtn1" class="tabLink">Systems</button>
+                <button id="mBtn2" class="tabLink">Resources</button>
+            
+        </nav>
+    </Header>
+    <article>
+        <div id="Modal1" class="tabContext">
+            <h2>Systems</h2>
+            <ul>
+                <li>Power/Propulsion: Active</li>
+                <li>Defenses: Idle</li>
+                <li>Armaments: Stowed and Secured</li>
+            </ul>
+            <span class="exit">Exit</span>
+        </div>
+        <div id="Modal2" class="tabContext">
+            <h2>Resources</h2>
+            <ul>
+                <li>Mission Critical Materials: 90%</li>
+                <li>Cargo laden: Accounted and Secured</li>
+                <li>Emission holdover: 25%</li>
+            </ul>
+            <span class="exit">Exit</span>
+        </div>
+        
+    </article>
+    <script src="./js/Modal.js"></script>
+</body>
+</html>
