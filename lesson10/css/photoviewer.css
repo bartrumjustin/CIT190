@@ -3,7 +3,7 @@ body{
     height: 100dvh;
     margin: 0;
     padding: 0;
-    background-color: #F8F9FA;
+    background-color: black;
 }
 article{
     height: 100%;
@@ -12,18 +12,24 @@ article{
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    margin-top: 2em;
+    margin-top: .1em;
 
 }
 #photoCont{
-    border: .1em solid darkgray;
-    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
     width: 90%;
     min-height: 70%;
 }
+#photoCont > img{
+    width: 100%;
+}
 #minisList{
-    background-color: darkslategray;
-    min-width: 90%;
+    
+    max-width: 90%;
     min-height: 20%;
     display: flex;
     flex-direction: row;
@@ -33,9 +39,23 @@ article{
 #photoFrame{
     min-width: 80%;
 }
-.mini{
+.minis{
     margin: .75em;
-    height: 75%;
-    width: 25%;
+    filter: grayscale(1) blur(1px); 
+    max-width: 25%;
     background-color: white;
+}
+.active{
+    filter: grayscale(0) blur(0);
+    transform: scale(1.2);
+}
+
+@media screen and (min-width: 800px) {
+    .minis{
+        max-width: 10%;
+    }
+        #photoCont>img {
+            padding-top: 5em;
+            width: 30%;
+        }
 }
