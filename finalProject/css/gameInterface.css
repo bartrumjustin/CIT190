@@ -81,10 +81,12 @@ h1{
 }
 
 h3{
+    
     font-size: 1em;
     letter-spacing: .25em;
 }
 p{
+    
     font-size: .8em;
     font-weight: bolder;
 }
@@ -111,14 +113,20 @@ img{
     height: 75%;
     width: 95%;
     flex-direction: row;
-    justify-items: center;
+    justify-content: space-evenly;
     
 }
 section{
+    max-width: 20%;
+    padding: 0 1em;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 
+}
+.btn{
+    border: .5em solid var(--alert);
+    background-color: var(--alert);
 }
     a :hover {
 
