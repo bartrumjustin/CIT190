@@ -1,0 +1,33 @@
+body{
+    width: 100dvw;
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#gallery{
+    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: .5em;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+}
+#gallery img{
+    max-width: 50%;
+    max-height: 40%;
+}
+.active{
+    background-color: dimgrey;
+    color: white;
+}
+@media screen and (min-width: 800px)  {
+    #gallery{
+        flex-direction: row;
+    }
+}
