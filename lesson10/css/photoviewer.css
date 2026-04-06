@@ -40,9 +40,10 @@ article{
     min-width: 80%;
 }
 .minis{
+    min-height: fit-content;
     margin: .75em;
     filter: grayscale(1) blur(1px); 
-    max-width: 25%;
+    min-width: 50%;
     background-color: white;
 }
 .active{
@@ -52,7 +53,8 @@ article{
 
 @media screen and (min-width: 800px) {
     .minis{
-        max-width: 10%;
+        min-height: fit-content;
+        min-width: 50%;
     }
         #photoCont>img {
             padding-top: 5em;

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/photoviewer.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="./css/jquery-ui.css" rel="stylesheet">
+    
+    <script src="./js/jquery.js"></script>
+    
+    <script src="./js/jquery-ui.js"></script>
 
     <title>photo viewer</title>
 </head>
-<body>
-    <article>
-        <div id="photoCont">
+<body class="ui-widget">
+    <article class="ui-widget-header ">
+        <div class=".ui-widget-content ui-corner-all " id="photoCont">
             
         </div>
-        <div id="minisList">
-            <img class="minis" src="./media/ElliGrandmaDressUp.jpg" alt="Elliana and Grandma Dressed up">
-            <img class="minis" src="./media/EmersonBirthday.jpg" alt="Emerson's Birthday at Grandmas">
-            <img class="minis" src="./media/ElliPreschoolGrad.jpg" alt="Elliana's Preschool Graduation">
+        <div class="ui-widget-icon-block" id="minisList">
+            <img class="minis ui-icon" src="./media/ElliGrandmaDressUp.jpg" alt="Elliana and Grandma Dressed up">
+            <img class="minis ui-icon" src="./media/EmersonBirthday.jpg" alt="Emerson's Birthday at Grandmas">
+            <img class="minis ui-icon" src="./media/ElliPreschoolGrad.jpg" alt="Elliana's Preschool Graduation">
         </div>
     </article>
     <script src="./js/photoviewer.js"></script>
