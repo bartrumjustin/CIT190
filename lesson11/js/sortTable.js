@@ -1,57 +1,55 @@
-var compare = {                           // Declare compare object
-    name: function (a, b) {                  // Add a method called name
-        a = a.toLowerCase();          // Remove The from start of parameter
-        b = b.toLowerCase();          // Remove The from start of parameter
+var compare = {                           
+    name: function (a, b) {                  
+        a = a.toLowerCase();          
+        b = b.toLowerCase();          
 
-        if (a < b) {                          // If value a is less than value b
-            return -1;                          // Return -1
-        } else {                              // Otherwise
-            return a > b ? 1 : 0;               // If a is greater than b return 1 OR
-        }                                     // if they are the same return 0
+        if (a < b) {                          
+            return -1;                          
+        } else {                              
+            return a > b ? 1 : 0;               
+        }                                     
     },
-    number: function (a, b) {              // Add a method called duration
-        a = a.split(':');                     // Split the time at the colon
-        b = b.split(':');                     // Split the time at the colon
+    number: function (a, b) {              
+         
 
-        a = Number(a[0]) * 60 + Number(a[1]); // Convert the time to seconds
-        b = Number(b[0]) * 60 + Number(b[1]); // Convert the time to seconds
-
-        return a - b;                         // Return a minus b
+        return a - b;                        
     },
-    date: function (a, b) {                  // Add a method called date
-        a = new Date(a);                      // New Date object to hold the date
-        b = new Date(b);                      // New Date object to hold the date
-
-        return a - b;                         // Return a minus b
+    double: function (a, b) {    
+        //split the $ sign from the number, then return the number which is index 1 
+        a = a.split('$');
+        console.log(a[1]);
+        b = b.split('$');                     
+        //return and convert to float, doing so prior will go undefined as $ is not a number.
+        return parseFloat(a[1] - b[1]);                        
     }
 };
 
 $('.sortable').each(function () {
-    var $table = $(this);                     // This sortable table
-    var $tbody = $table.find('tbody');        // Store table body
-    var $controls = $table.find('th');        // Store table headers
-    var rows = $tbody.find('tr').toArray();   // Store array containing rows
+    var $table = $(this);                     
+    var $tbody = $table.find('tbody');        
+    var $controls = $table.find('th');        
+    var rows = $tbody.find('tr').toArray();   
     
-    $controls.on('click', function () {        // When user clicks on a header
-        var $header = $(this);                  // Get the header
-        var order = $header.data('sort');       // Get value of data-sort attribute
-        var column;                             // Declare variable called column
+    $controls.on('click', function () {        
+        var $header = $(this);                  
+        var order = $header.data('sort');       
+        var column;                             
 
-        // If selected item has ascending or descending class, reverse contents
+        
         if ($header.is('.ascending') || $header.is('.descending')) {
-            $header.toggleClass('ascending descending');    // Toggle to other class
-            $tbody.append(rows.reverse());                // Reverse the array
-        } else {                                        // Otherwise perform a sort                            
-            $header.addClass('ascending');                // Add class to header
-            // Remove asc or desc from all other headers
+            $header.toggleClass('ascending descending');    
+            $tbody.append(rows.reverse());                
+        } else {                                                                    
+            $header.addClass('ascending');                
+            
             $header.siblings().removeClass('ascending descending');
-            if (compare.hasOwnProperty(order)) {  // If compare object has method
-                column = $controls.index(this);         // Search for columnâ€™s index no
+            if (compare.hasOwnProperty(order)) {  
+                column = $controls.index(this);         
 
-                rows.sort(function (a, b) {               // Call sort() on rows array
-                    a = $(a).find('td').eq(column).text(); // Get text of column in row a
-                    b = $(b).find('td').eq(column).text(); // Get text of column in row b
-                    return compare[order](a, b);           // Call compare method
+                rows.sort(function (a, b) {               
+                    a = $(a).find('td').eq(column).text(); 
+                    b = $(b).find('td').eq(column).text(); 
+                    return compare[order](a, b);           
                 });
 
                 $tbody.append(rows);

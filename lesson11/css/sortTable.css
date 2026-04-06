@@ -1,0 +1,29 @@
+table{
+    justify-self: center;
+    border: 5px solid black;
+    width: 90dvw;
+}
+thead > tr> th{
+    margin: 0;
+    padding: .5em;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+        border-right: 2px solid black;
+}
+tbody>tr>td{
+    
+    padding: .5em;
+}
+
+p{
+    display: none;
+    
+}
+.ascending>p{
+    
+    display: block;
+}
+.descending>p{
+    display: block;
+    transform: scaleY(-1);
+}
