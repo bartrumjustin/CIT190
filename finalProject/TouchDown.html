@@ -8,15 +8,22 @@
 </head>
 <body>
     <div id="topHud" class="hud">
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
+        <span class="entity">System: <p id="sysState"> - - -</p> </span>
+        <span class="entity">Thrust Temp: <p id="TTState"> - - -</p></span>
+        <span class="entity">Rate/Descent: <p id="RDState"> - - -</p></span>
+        <span class="entity">Elapsed Time: <p id="TimeState">--:--</p></span>
     </div>
-    <div id="leftHud" class="hud"></div>
+    <div id="leftHud" class="hud">
+        <p id="NumAlt">***</p>
+        
+    </div>
     <div id="rightHud" class="hud"></div>
     <div id="viewer">
-        <img src="./media/LanderShipV2.png" alt="">
+        <img id="ship" src="./media/LanderShipV2.png" alt="ship">
+        <div id="thrustCont">
+        <img class="thrust" src="./media/comet.png" alt="thrust">
+        <img class="thrust" src="./media/comet.png" alt="thrust">
+        </div>
     </div>
     <script src="./js/TouchDown.js"></script>
 </body>

@@ -1,13 +1,13 @@
 :root{
     --bg: #0F131A;
-    --SecEnv: #313A4D;
+    --SecEnv: #313a4d;
     --mainAcc: #CC6622;
     --effect : #FFA34D;
     --mainHudTxt: #00FFC2;
     --secHudTxt: #6C5CE7;
     --valueTxt: #F8F9FA;
     --hudWarn: #FF1744;
-    
+    --SecEnvTrans
 }
 @font-face {
     font-family: font;
@@ -21,8 +21,8 @@ body{
     "left action action right"
     "left action action right"
     ;
-    grid-template-columns: 1fr 3fr 3fr 1fr;
-    grid-template-rows: 1fr 4fr;
+    grid-template-columns: 1fr 5fr 5fr 1fr;
+    grid-template-rows: 1fr 11fr;
     height: 100dvh;
     width: 100dvw;
     /*overflow: hidden;*/
@@ -36,16 +36,38 @@ body{
 
 }
 #topHud{
-    background-color: #00FFC2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) ;
+    background-color: rgba(49, 58, 77,.25) ;
     grid-area: top;
+    color: #2cff05;
+    
    
    
 }
+#topHud>span{
+    align-items: center;
+    display: inline-flex;
+}
+.entity{
+    margin: 0 .5em;
+
+}
 #leftHud{
-    background-color: #CC6622;
+    height: 100%;
+    background-color: rgba(49, 58, 77, .25);
     grid-area: left;
     
     
+    
+}
+#NumAlt{
+    border: .15em solid var(--mainAcc);
+}
+#ScaleAlt{
+    display: flex;
+    flex-direction: column;
+    align-items:stretch;
 }
 #rightHud{
     background-color: #FF1744;
@@ -54,7 +76,15 @@ body{
 #viewer{
     grid-area: action;
 }
-#viewer>img{
+#viewer>#ship{
     
-    width:75%;
+    transform: scale(.5);
+}
+#thrustCont{
+    display: flex;
+    flex-direction: row;
+}
+.thrust{
+    transform: scale(.25) rotate(140deg);
+
 }
