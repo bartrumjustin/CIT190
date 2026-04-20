@@ -29,6 +29,10 @@ const $masterNameArr = [
     }
 
 ];
+const lInd = $('#left');
+const rInd = $('#right');
+const altBox = $('#NumAlt');
+const $stat = $('#status');
 var $gameComplete = false;
 var $TicToc;
 var inertiaCoEf = 1;
@@ -57,14 +61,7 @@ $(function () {
         "If one thruster overheats, the whole propulsion system will shutdown until cooled");
     
     SelfTest();
-    if ($(window).width() >= 780) {
-        console.log("Desktop User");
-        desktopControl();
-    }
-    else {
-        console.log("Mobile User");
-        //mobileControl();
-    }
+    
     
 
 
@@ -115,7 +112,7 @@ function desktopControl() {
         var x = 0;
         var testing = setInterval(function () {
             if (x < $masterNameArr.length) {
-                console.log($masterNameArr[x]);
+                //console.log($masterNameArr[x]);
                 $masterGen.text($masterNameArr[x].name);
                 $('#sysCont').css({
                     'background-color': $masterNameArr[x].color[0],
@@ -125,9 +122,9 @@ function desktopControl() {
             
                 $.each($masterNameArr[x].string, function (index, item) {
                     setTimeout(function () {
-                        console.log(item + " " + index * 250);
+                        //console.log(item + " " + index * 250);
                         $master.text(item);
-                    }, 300 * index);
+                    }, 100 * index);
                 })
             
             }
@@ -140,21 +137,19 @@ function desktopControl() {
             }
         
         
-            console.log(x);
+            //console.log(x);
             $time.html(`${x}${x}:${x}${x}`);
         
-        }, 500);
+        }, 300);
         var count = 0;
-        const lInd = $('#left');
-        const rInd = $('#right');
-        const altBox = $('#NumAlt');
+        
     
         var TempIndFLow = setInterval(function () {
         
         
             let pos = $('#left').offset().top;
         
-            let y = 5 * count;
+            let y = 8 * count;
             altBox.css('transform', `translateY(${y}px)`);
             altBox.text(Math.floor($(window).height() - altBox.offset().top));
             lInd.css('transform', `translateY(-${y}px)`);
@@ -190,14 +185,46 @@ function desktopControl() {
         $('#shipLeft').toggle();
         $('#shipRight').toggle();
         $('#terra').toggle();
+        if ($(window).width() >= 780) {
+            console.log("Desktop User");
+            desktopControl();
+        }
+        else {
+            console.log("Mobile User");
+            //mobileControl();
+        }
 };
 
 //Start Game heartbeat and routine behaviours
-
+var a=0, b=0, i = 0, y= 0, adj = 4;
 function startGame() {
+    var timeout = false;
     var heartbeat = setInterval(function () {
         $TicToc = !$TicToc;
-        console.log("beat");
+        console.log(i, b);
+        $time.html(`${a}:${b}`);
+        i++;
+        if (thrustFlag) {
+            adj++;
+            y-= 1/5;
+        }
+        
+        if (i === 5) {
+            if (!thrustFlag) {
+                adj = 4;
+            }
+            y++;
+            i = 0;
+            b++;
+            if (b === 10) {
+                
+                b = 0;
+                a++;
+                    
+            }
+        }
+        altBox.css('transform', `translateY(${y*(1/adj)}px)`);
+        altBox.text(Math.floor($(window).height() - altBox.offset().top));
     }, 20);
     var rotation = setInterval(function () {
         
@@ -208,14 +235,110 @@ function startGame() {
             'position': 'absolute',
             'transform': `scale(.25) rotate(${angle}deg)`
         });
+        if (Math.abs(angle) > 20) {
+            $stat.css({
+                'background-color': $masterNameArr[0].color[0],
+                'color': $masterNameArr[0].color[1],
+                'border': `3px solid ${$masterNameArr[0].color[1]}`
+            });
+            $stat.text($masterNameArr[0].string[1]);
+        }
+        if (Math.abs(angle) > 45) {
+            
+            $stat.css({
+                'background-color': $masterNameArr[1].color[0],
+                'color': $masterNameArr[1].color[1],
+                'border': `3px solid ${$masterNameArr[2].color[1]}`
+            });
+            $stat.text($masterNameArr[1].string[1]);
+        }
+        
+        if (Math.abs(angle) > 80) {
+            endGame("You have exceeded the free fall angle greater than 80 degrees!");
+        }
+        else if (Math.abs(angle) < 20){
+            $stat.css({
+                'background-color': $masterNameArr[3].color[0],
+                'color': $masterNameArr[3].color[1],
+                'border': `3px solid ${$masterNameArr[3].color[1]}`
+            });
+            $stat.text("");
+        }
     }, 20);
+    
+    
     var thrustInt = setInterval(function () {
         if (thrustFlag) {
-            heatRise += 1 * heatMult;
+            heatRise -= 1 * heatMult;
+            console.log("thrust heat" + heatRise);
+            document.getElementById("markerCont").style.transform = `translateY(${heatRise}px)`;
         }
         else if (heatRise != 0) {
-            heatRise -= 
+            heatRise += 1 * heatMult / 2;
+            console.log("thrust cool" + heatRise);
+            document.getElementById("markerCont").style.transform = `translateY(${heatRise}px)`;
         }
+        if (heatRise <= -565) {
+            endGame("You Have overheated and destroyed your propulsion!");
+            thrustFlag = false;
+            timeout = true;
+            heatRise = -565;
+            $masterGen.text($masterNameArr[2].name);
+            $('#sysCont').css({
+                'background-color': $masterNameArr[2].color[0],
+                'color': $masterNameArr[2].color[1],
+                'border': `3px solid ${$masterNameArr[2].color[1]}`
+            });
+            $master.text($masterNameArr[2].string[1]);
+        };
+        if(!timeout) {
+            if (lInd.offset().top < $(window).height() / 2 && heatRise > -565) {
+                $('#rightHud').css({
+                    'background-color': 'var(--effect)',
+                    'color': 'var(--bg)'
+                });
+                $masterGen.text($masterNameArr[0].name);
+                $('#sysCont').css({
+                    'background-color': $masterNameArr[0].color[0],
+                    'color': $masterNameArr[0].color[1],
+                    'border': `3px solid ${$masterNameArr[0].color[1]}`
+                });
+                $master.text($masterNameArr[0].string[2]);
+            };
+            if (lInd.offset().top < $(window).height() / 4 && heatRise > -565) {
+                $('#rightHud').css({
+                    'background-color': 'var(--hudWarn)',
+                    'color': 'var(--bg)'
+                });
+                $masterGen.text($masterNameArr[1].name);
+                $('#sysCont').css({
+                    'background-color': $masterNameArr[1].color[0],
+                    'color': $masterNameArr[1].color[1],
+                    'border': `3px solid ${$masterNameArr[1].color[1]}`
+                });
+                $master.text($masterNameArr[1].string[2]);
+            };
+        }
+        if (lInd.offset().top > $(window).height() / 2) {
+            timeout = false;
+            $('#rightHud').css({
+                'background-color': '',
+                'color': ''
+            });
+            $masterGen.text($masterNameArr[3].name);
+            $('#sysCont').css({
+                'background-color': $masterNameArr[3].color[0],
+                'color': $masterNameArr[3].color[1],
+                'border': `3px solid ${$masterNameArr[3].color[1]}`
+            });
+            $master.text($masterNameArr[3].string[0]);
+        };
+        
     }, 20);
 }
 
+function endGame(d) {
+    $gameComplete = true;
+    clearInterval();
+    alert("You have lost!!!\n" + d);
+}

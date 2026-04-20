@@ -103,6 +103,9 @@ body{
     align-items: center ;
     justify-content: center;
 }
+#status{
+    align-self: flex-start;
+}
 .ships{
     position: absolute;
     transform: scale(.25);
