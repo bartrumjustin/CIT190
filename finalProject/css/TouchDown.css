@@ -14,6 +14,7 @@
     src: url(../media/FiraCode-Regular.ttf);
 }
 body{
+    overflow: hidden;
     display: grid;
     grid-template-areas: 
     "top top top top"
@@ -104,6 +105,7 @@ body{
     justify-content: center;
 }
 #status{
+    position: absolute;
     align-self: flex-start;
 }
 .ships{
